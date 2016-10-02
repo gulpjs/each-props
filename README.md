@@ -39,7 +39,7 @@ Usage
         nodeinfo.parent['c'] = value.toLowerCase();
       } else if (keychain === 'b.d') {
         return true; // stop to dig
-      } else i f(keychain === 'b.d.e') {
+      } else if (keychain === 'b.d.e') {
         nodeinfo.parent['e'] = value.toLowerCase();
       }
     });
