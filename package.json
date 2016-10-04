@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Process each properties deeply.",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "lint": "eslint .",
     "test": "mocha",
