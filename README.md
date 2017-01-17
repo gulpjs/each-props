@@ -1,15 +1,19 @@
-# each-props [![Build Status][travis-img]][travis-url] [![Build Status][appveyor-img]][appveyor-url]
+[each-props][repo-url] [![NPM][npm-img]][npm-url] [![MIT License][mit-img]][mit-url] [![Build Status][travis-img]][travis-url] [![Build Status][appveyor-img]][appveyor-url] [![Coverage Status][coverage-img]][coverage-url]
+============
 
 Process object properties deeply.
 
-[![NPM][npm-img]][npm-url]
-
-[npm-img]: https://nodei.co/npm/each-props.png
-[npm-url]: https://nodei.co/npm/each-props/
+[repo-url]: https://github.com/sttk/each-props/
+[npm-img]: https://img.shields.io/badge/npm-v1.0.0-blue.svg
+[npm-url]: https://www.npmjs.org/package/each-props/
+[mit-img]: https://img.shields.io/badge/license-MIT-green.svg
+[mit-url]: https://opensource.org/licenses.MIT
 [travis-img]: https://travis-ci.org/sttk/each-props.svg?branch=master
 [travis-url]: https://travis-ci.org/sttk/each-props
 [appveyor-img]: https://ci.appveyor.com/api/projects/status/github/sttk/each-props?branch=master&svg=true
 [appveyor-url]: https://ci.appveyor.com/project/sttk/each-props
+[coverage-img]: https://coveralls.io/repos/github/sttk/each-props/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/sttk/each-props?branch=master
 
 Install
 -------
@@ -27,20 +31,20 @@ Usage
     const eachProps = require('each-props');
     ```
 
-* Apply a function to all (= non plain object) properties.
+* Apply a function to all (non plain object) properties.
 
     ```js
     var obj = { a: 1, b: { c: 'CCC', d: { e: 'EEE' } } };
 
-    eachProps(obj, function(value, keychain, nodeinfo) {
-      if (keychain === 'a') {
-        nodeinfo.parent['a'] = value * 2;
-      } else if (keychain === 'b.c') {
-        nodeinfo.parent['c'] = value.toLowerCase();
-      } else if (keychain === 'b.d') {
+    eachProps(obj, function(value, keyChain, nodeInfo) {
+      if (keyChain === 'a') {
+        nodeInfo.parent['a'] = value * 2;
+      } else if (keyChain === 'b.c') {
+        nodeInfo.parent['c'] = value.toLowerCase();
+      } else if (keyChain === 'b.d') {
         return true; // stop to dig
-      } else if (keychain === 'b.d.e') {
-        nodeinfo.parent['e'] = value.toLowerCase();
+      } else if (keyChain === 'b.d.e') {
+        nodeInfo.parent['e'] = value.toLowerCase();
       }
     });
     console.log(obj);
@@ -57,37 +61,39 @@ Executes the *callback* function for all properties.
 ##### **Arguments :** 
 
    * **obj** [object] : A plain object to be treated.
-   * **callback** [function] : A function to treat the plain object.
+   * **fn** [function] : A function to treat the plain object.
    * **opts** [object] : An object to be able to has options.
 
-##### **API of *callback* function**
+##### **API of *fn* function**
 
-* ***callback(value, key, info) => object***
+* ***fn(value, keyChain, nodeInfo) => boolean***
 
     * **Arguments :**
         * **value** [any] : The property value.
-        * **keychain** [string] : A string concatenated the hierarchical keys with dots.
-        * **nodeinfo** [object] : An object which contains properties: `index`, `count`, `depth`, `parent`, `sort`, and can contains more properties by specifying in **eachProps**'s *opts*. 
+        * **keyChain** [string] : A string concatenating the hierarchical keys with dots.
+        * **nodeInfo** [object] : An object which contains properties: `index`, `count`, `depth`, `parent`, `sort`, and can contains more properties by specifying in `opts` above. 
 
-    * **Returns :**
-        * [boolean] : Stops digging child properties if `true`.
+    * **Returns :** [boolean] : Stops digging child properties if `true`.
 
-    ##### **Properties of *nodeinfo* :**
+    ##### **Properties of *nodeInfo* :**
 
-    * ***nodeinfo*** *[object]*
+    * ***nodeInfo*** *[object]*
         * **index** [number] : The index of the property among the sibling properties.
         * **count** [number] : The count of the sibling properties.
         * **depth** [number] : The depth in the property hierarchy.
         * **parent** [object] : The parent property.
-        * **sort** [function] : A sort function which orders the child properties. (Not sort If null.) 
+        * **sort** [function] : A sort function which orders the child properties. This property is inherited from **opts**, if specified.
 
 ##### **Properties of *opts* :**
 
 * ***opts*** *[object]*
-    * **sort** [function] : A sort function which orders the same level properties. (Not sort if null.)
+    * **sort** [function] : A sort function which orders the same level properties. (optional)
     * ... and any properties you want to pass to each node.
 
 License
 -------
 
-MIT
+Copyright (C) 2016 Takayuki Sato
+
+This program is free software under [MIT][mit-url] License.
+See the file LICENSE in this distribution for more details.

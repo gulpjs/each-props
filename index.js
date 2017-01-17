@@ -1,72 +1,48 @@
 'use strict';
 
-var inspect = require('util').inspect;
-var isPlainObject = require('lodash.isplainobject');
+var isPlainObject = require('is-plain-object');
+var objectAssign = require('object-assign');
 
-module.exports = function(obj, callback, opts) {
+module.exports = function(obj, fn, opts) {
   if (!isPlainObject(obj)) {
-    throw new TypeError('1st argument needs to be a plain object: ' +
-      inspect(obj));
+    return;
   }
 
-  if (typeof callback !== 'function') {
-    throw new TypeError('2nd argument needs to be a function: ' +
-      inspect(callback));
+  if (typeof fn !== 'function') {
+    return;
   }
 
-  if (opts == null) {
-    opts = {};
-  } else if (!isPlainObject(opts)) {
-    throw new TypeError('3rd argument needs to be an object: ' +
-      inspect(opts));
-  }
+  var nodeInfo = isPlainObject(opts) ? objectAssign({}, opts) : {};
+  nodeInfo.depth = 0;
 
-  if (opts.sort != null && typeof opts.sort !== 'function') {
-    throw new TypeError('The `sort` property in 3rd argument needs to be a ' +
-      'function: ' + inspect(opts));
-  }
-
-  opts.depth = 0;
-
-  foreachNode(obj, '', callback, opts);
+  forEachChild(obj, '', fn, nodeInfo);
 };
 
-function foreachNode(node, basekey, callback, info) {
+function forEachChild(node, baseKey, fn, nodeInfo) {
   var keys = Object.keys(node);
-  if (typeof info.sort === 'function') {
-    keys = info.sort(keys);
+  if (typeof nodeInfo.sort === 'function') {
+    var sortedKeys = nodeInfo.sort(keys);
+    if (Array.isArray(sortedKeys)) {
+      keys = sortedKeys;
+    }
   }
 
   for (var i = 0, n = keys.length; i < n; i++) {
     var key = keys[i];
-    var keychain = basekey + '.' + key;
+    var keyChain = baseKey + '.' + key;
     var value = node[key];
 
-    var childinfo = createChildInfo(info, node, i, n);
+    var childInfo = objectAssign({}, nodeInfo);
+    childInfo.index = i;
+    childInfo.count = n;
+    childInfo.depth = nodeInfo.depth + 1;
+    childInfo.parent = node;
 
-    if (callback(value, keychain.slice(1), childinfo)) {
+    var notDigg = fn(value, keyChain.slice(1), childInfo);
+    if (notDigg || !isPlainObject(value)) {
       continue;
     }
 
-    if (isPlainObject(value)) {
-      foreachNode(value, keychain, callback, childinfo);
-    }
+    forEachChild(value, keyChain, fn, childInfo);
   }
-}
-
-function createChildInfo(info, node, i, n) {
-  var childinfo = {};
-
-  var keys = Object.keys(info);
-  for (var j = 0; j < keys.length; j++) {
-    var key = keys[j];
-    childinfo[key] = info[key];
-  }
-
-  childinfo.index = i;
-  childinfo.count = n;
-  childinfo.depth = info.depth + 1;
-  childinfo.parent = node;
-
-  return childinfo;
 }
