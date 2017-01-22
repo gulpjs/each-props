@@ -29,9 +29,9 @@ describe('Processing test', function() {
     eachProps(obj, logger.bind(logs));
 
     expect(logs).to.deep.equal([
-      { keyChain: 'a', index: 0, count: 3, depth: 1 },
-      { keyChain: 'b', index: 1, count: 3, depth: 1 },
-      { keyChain: 'c', index: 2, count: 3, depth: 1 },
+      { keyChain: 'a', index: 0, count: 3, depth: 1, name: 'a' },
+      { keyChain: 'b', index: 1, count: 3, depth: 1, name: 'b' },
+      { keyChain: 'c', index: 2, count: 3, depth: 1, name: 'c' },
     ]);
     done();
   });
@@ -43,13 +43,13 @@ describe('Processing test', function() {
     eachProps(obj, logger.bind(logs));
 
     expect(logs).to.deep.equal([
-      { keyChain: 'a', index: 0, count: 2, depth: 1 },
-      { keyChain: 'b', index: 1, count: 2, depth: 1 },
-      { keyChain: 'b.c', index: 0, count: 3, depth: 2 },
-      { keyChain: 'b.d', index: 1, count: 3, depth: 2 },
-      { keyChain: 'b.e', index: 2, count: 3, depth: 2 },
-      { keyChain: 'b.e.f', index: 0, count: 2, depth: 3 },
-      { keyChain: 'b.e.g', index: 1, count: 2, depth: 3 },
+      { keyChain: 'a', index: 0, count: 2, depth: 1, name: 'a' },
+      { keyChain: 'b', index: 1, count: 2, depth: 1, name: 'b' },
+      { keyChain: 'b.c', index: 0, count: 3, depth: 2, name: 'c' },
+      { keyChain: 'b.d', index: 1, count: 3, depth: 2, name: 'd' },
+      { keyChain: 'b.e', index: 2, count: 3, depth: 2, name: 'e' },
+      { keyChain: 'b.e.f', index: 0, count: 2, depth: 3, name: 'f' },
+      { keyChain: 'b.e.g', index: 1, count: 2, depth: 3, name: 'g' },
     ]);
     done();
   });
@@ -67,12 +67,12 @@ describe('Processing test', function() {
     eachProps(obj, logger.bind(logs), opts);
 
     expect(logs).to.deep.equal([
-      { keyChain: 'e', index: 0, count: 6, depth: 1 },
-      { keyChain: 'q', index: 1, count: 6, depth: 1 },
-      { keyChain: 'r', index: 2, count: 6, depth: 1 },
-      { keyChain: 't', index: 3, count: 6, depth: 1 },
-      { keyChain: 'w', index: 4, count: 6, depth: 1 },
-      { keyChain: 'y', index: 5, count: 6, depth: 1 },
+      { keyChain: 'e', name: 'e', index: 0, count: 6, depth: 1 },
+      { keyChain: 'q', name: 'q', index: 1, count: 6, depth: 1 },
+      { keyChain: 'r', name: 'r', index: 2, count: 6, depth: 1 },
+      { keyChain: 't', name: 't', index: 3, count: 6, depth: 1 },
+      { keyChain: 'w', name: 'w', index: 4, count: 6, depth: 1 },
+      { keyChain: 'y', name: 'y', index: 5, count: 6, depth: 1 },
     ]);
     done();
   });
@@ -90,13 +90,13 @@ describe('Processing test', function() {
     eachProps(obj, logger.bind(logs), opts);
 
     expect(logs).to.deep.equal([
-      { keyChain: 'x', index: 0, count: 2, depth: 1 },
-      { keyChain: 'x.b', index: 0, count: 3, depth: 2 },
-      { keyChain: 'x.b.m', index: 0, count: 2, depth: 3 },
-      { keyChain: 'x.b.n', index: 1, count: 2, depth: 3 },
-      { keyChain: 'x.c', index: 1, count: 3, depth: 2 },
-      { keyChain: 'x.v', index: 2, count: 3, depth: 2 },
-      { keyChain: 'z', index: 1, count: 2, depth: 1 },
+      { name: 'x', keyChain: 'x', index: 0, count: 2, depth: 1 },
+      { name: 'b', keyChain: 'x.b', index: 0, count: 3, depth: 2 },
+      { name: 'm', keyChain: 'x.b.m', index: 0, count: 2, depth: 3 },
+      { name: 'n', keyChain: 'x.b.n', index: 1, count: 2, depth: 3 },
+      { name: 'c', keyChain: 'x.c', index: 1, count: 3, depth: 2 },
+      { name: 'v', keyChain: 'x.v', index: 2, count: 3, depth: 2 },
+      { name: 'z', keyChain: 'z', index: 1, count: 2, depth: 1 },
     ]);
     done();
   });
@@ -116,12 +116,12 @@ describe('Processing test', function() {
     eachProps(obj, logger.bind(logs), opts);
 
     expect(logs).to.deep.equal([
-      { keyChain: 'x', index: 0, count: 2, depth: 1 },
-      { keyChain: 'x.a', index: 0, count: 4, depth: 2 },
-      { keyChain: 'x.b', index: 1, count: 4, depth: 2 },
-      { keyChain: 'x.c', index: 2, count: 4, depth: 2 },
-      { keyChain: 'x.v', index: 3, count: 4, depth: 2 },
-      { keyChain: 'z', index: 1, count: 2, depth: 1 },
+      { name: 'x', keyChain: 'x', index: 0, count: 2, depth: 1 },
+      { name: 'a', keyChain: 'x.a', index: 0, count: 4, depth: 2 },
+      { name: 'b', keyChain: 'x.b', index: 1, count: 4, depth: 2 },
+      { name: 'c', keyChain: 'x.c', index: 2, count: 4, depth: 2 },
+      { name: 'v', keyChain: 'x.v', index: 3, count: 4, depth: 2 },
+      { name: 'z', keyChain: 'z', index: 1, count: 2, depth: 1 },
     ]);
     done();
   });
@@ -140,13 +140,20 @@ describe('Processing test', function() {
     eachProps(obj, logger.bind(logs), opts);
 
     expect(logs).to.deep.equal([
-      { keyChain: 'x', index: 0, count: 2, depth: 1, m: 'ABC', n: 9 },
-      { keyChain: 'x.b', index: 0, count: 3, depth: 2, m: 'ABC', n: 9 },
-      { keyChain: 'x.b.m', index: 0, count: 2, depth: 3, m: 'ABC', n: 9 },
-      { keyChain: 'x.b.n', index: 1, count: 2, depth: 3, m: 'ABC', n: 9 },
-      { keyChain: 'x.c', index: 1, count: 3, depth: 2, m: 'ABC', n: 9 },
-      { keyChain: 'x.v', index: 2, count: 3, depth: 2, m: 'ABC', n: 9 },
-      { keyChain: 'z', index: 1, count: 2, depth: 1, m: 'ABC', n: 9 },
+      { name: 'x', keyChain: 'x', index: 0, count: 2, depth: 1,
+        m: 'ABC', n: 9 },
+      { name: 'b', keyChain: 'x.b', index: 0, count: 3, depth: 2,
+        m: 'ABC', n: 9 },
+      { name: 'm', keyChain: 'x.b.m', index: 0, count: 2, depth: 3,
+        m: 'ABC', n: 9 },
+      { name: 'n', keyChain: 'x.b.n', index: 1, count: 2, depth: 3,
+        m: 'ABC', n: 9 },
+      { name: 'c', keyChain: 'x.c', index: 1, count: 3, depth: 2,
+        m: 'ABC', n: 9 },
+      { name: 'v', keyChain: 'x.v', index: 2, count: 3, depth: 2,
+        m: 'ABC', n: 9 },
+      { name: 'z', keyChain: 'z', index: 1, count: 2, depth: 1,
+        m: 'ABC', n: 9 },
     ]);
     done();
   });

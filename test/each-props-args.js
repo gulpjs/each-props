@@ -52,13 +52,13 @@ describe('Argument test', function() {
     expect(obj).to.deep.equal({ a: 1, b: { c: 2 } });
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, xxx: true, },
+        parent: { a: 1, b: { c: 2 } }, xxx: true, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, xxx: true },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, xxx: true, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, xxx: true },
+        parent: { c: 2 }, xxx: true, name: 'c' },
       },
     ]);
     done();
@@ -75,13 +75,13 @@ describe('Argument test', function() {
     expect(obj).to.deep.equal({ a: 1, b: { c: 2 } });
     expect(logs).to.deep.equal([
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 0, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnSort },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnSort, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: fnSort },
+        parent: { c: 2 }, sort: fnSort, name: 'c' },
       },
       { value: 1, keyChain: 'a', nodeInfo: { index: 1, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: fnSort },
+        parent: { a: 1, b: { c: 2 } }, sort: fnSort, name: 'a' },
       },
     ]);
     done();
@@ -270,13 +270,13 @@ describe('Argument test', function() {
 
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } } },
+        parent: { a: 1, b: { c: 2 } }, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } } },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 } },
+        parent: { c: 2 }, name: 'c' },
       },
     ]);
     done();
@@ -291,13 +291,13 @@ describe('Argument test', function() {
 
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } } },
+        parent: { a: 1, b: { c: 2 } }, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } } },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 } },
+        parent: { c: 2 }, name: 'c' },
       },
     ]);
     done();
@@ -311,13 +311,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } } },
+        parent: { a: 1, b: { c: 2 } }, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } } },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 } },
+        parent: { c: 2 }, name: 'c' },
       },
     ]);
     done();
@@ -331,13 +331,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } } },
+        parent: { a: 1, b: { c: 2 } }, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } } },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 } },
+        parent: { c: 2 }, name: 'c' },
       },
     ]);
     done();
@@ -351,13 +351,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } } },
+        parent: { a: 1, b: { c: 2 } }, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } } },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 } },
+        parent: { c: 2 }, name: 'c' },
       },
     ]);
     done();
@@ -371,13 +371,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } } },
+        parent: { a: 1, b: { c: 2 } }, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } } },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 } },
+        parent: { c: 2 }, name: 'c' },
       },
     ]);
     done();
@@ -391,13 +391,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } } },
+        parent: { a: 1, b: { c: 2 } }, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } } },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 } },
+        parent: { c: 2 }, name: 'c' },
       },
     ]);
     done();
@@ -412,13 +412,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } } },
+        parent: { a: 1, b: { c: 2 } }, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } } },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 } },
+        parent: { c: 2 }, name: 'c' },
       },
     ]);
     done();
@@ -433,13 +433,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } } },
+        parent: { a: 1, b: { c: 2 } }, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } } },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 } },
+        parent: { c: 2 }, name: 'c' },
       },
     ]);
     done();
@@ -454,13 +454,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: undefined, },
+        parent: { a: 1, b: { c: 2 } }, sort: undefined, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: undefined, },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: undefined, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: undefined, },
+        parent: { c: 2 }, sort: undefined, name: 'c' },
       },
     ]);
     done();
@@ -474,13 +474,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: null },
+        parent: { a: 1, b: { c: 2 } }, sort: null, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: null },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: null, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: null },
+        parent: { c: 2 }, sort: null, name: 'c' },
       },
     ]);
     done();
@@ -495,13 +495,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: true },
+        parent: { a: 1, b: { c: 2 } }, sort: true, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: true },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: true, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: true },
+        parent: { c: 2 }, sort: true, name: 'c' },
       },
     ]);
     done();
@@ -516,13 +516,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: 123 },
+        parent: { a: 1, b: { c: 2 } }, sort: 123, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: 123 },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: 123, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: 123 },
+        parent: { c: 2 }, sort: 123, name: 'c' },
       },
     ]);
     done();
@@ -537,13 +537,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: 'ABC' },
+        parent: { a: 1, b: { c: 2 } }, sort: 'ABC', name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: 'ABC' },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: 'ABC', name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: 'ABC' },
+        parent: { c: 2 }, sort: 'ABC', name: 'c' },
       },
     ]);
     done();
@@ -558,13 +558,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: [1,2,3] },
+        parent: { a: 1, b: { c: 2 } }, sort: [1,2,3], name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: [1,2,3] },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: [1,2,3], name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: [1,2,3] },
+        parent: { c: 2 }, sort: [1,2,3], name: 'c' },
       },
     ]);
     done();
@@ -579,13 +579,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: { x: 1 } },
+        parent: { a: 1, b: { c: 2 } }, sort: { x: 1 }, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: { x: 1 } },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: { x: 1 }, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: { x: 1 } },
+        parent: { c: 2 }, sort: { x: 1 }, name: 'c' },
       },
     ]);
     done();
@@ -600,13 +600,13 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: fnNoReturn },
+        parent: { a: 1, b: { c: 2 } }, sort: fnNoReturn, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnNoReturn },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnNoReturn, name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: fnNoReturn },
+        parent: { c: 2 }, sort: fnNoReturn, name: 'c' },
       },
     ]);
     done();
@@ -621,13 +621,14 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: fnReturnNull },
+        parent: { a: 1, b: { c: 2 } }, sort: fnReturnNull, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnNull },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnNull,
+        name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: fnReturnNull },
+        parent: { c: 2 }, sort: fnReturnNull, name: 'c' },
       },
     ]);
     done();
@@ -642,13 +643,14 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: fnReturnBool },
+        parent: { a: 1, b: { c: 2 } }, sort: fnReturnBool, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnBool },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnBool,
+        name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: fnReturnBool },
+        parent: { c: 2 }, sort: fnReturnBool, name: 'c' },
       },
     ]);
     done();
@@ -663,13 +665,14 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: fnReturnNum },
+        parent: { a: 1, b: { c: 2 } }, sort: fnReturnNum, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnNum },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnNum,
+        name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: fnReturnNum },
+        parent: { c: 2 }, sort: fnReturnNum, name: 'c' },
       },
     ]);
     done();
@@ -684,13 +687,14 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: fnReturnStr },
+        parent: { a: 1, b: { c: 2 } }, sort: fnReturnStr, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnStr },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnStr,
+        name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: fnReturnStr },
+        parent: { c: 2 }, sort: fnReturnStr, name: 'c' },
       },
     ]);
     done();
@@ -705,13 +709,14 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: fnReturnFunc },
+        parent: { a: 1, b: { c: 2 } }, sort: fnReturnFunc, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnFunc },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnFunc,
+        name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: fnReturnFunc },
+        parent: { c: 2 }, sort: fnReturnFunc, name: 'c' },
       },
     ]);
     done();
@@ -726,13 +731,14 @@ describe('Argument test', function() {
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).to.deep.equal([
       { value: 1, keyChain: 'a', nodeInfo: { index: 0, count: 2, depth: 1,
-        parent: { a: 1, b: { c: 2 } }, sort: fnReturnObj },
+        parent: { a: 1, b: { c: 2 } }, sort: fnReturnObj, name: 'a' },
       },
       { value: { c: 2 }, keyChain: 'b', nodeInfo: { index: 1, count: 2,
-        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnObj },
+        depth: 1, parent: { a: 1, b: { c: 2 } }, sort: fnReturnObj,
+        name: 'b' },
       },
       { value: 2, keyChain: 'b.c', nodeInfo: { index: 0, count: 1, depth: 2,
-        parent: { c: 2 }, sort: fnReturnObj },
+        parent: { c: 2 }, sort: fnReturnObj, name: 'c' },
       },
     ]);
     done();
