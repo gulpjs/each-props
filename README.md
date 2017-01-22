@@ -3,18 +3,6 @@
 
 Process object properties deeply.
 
-[repo-url]: https://github.com/sttk/each-props/
-[npm-img]: https://img.shields.io/badge/npm-v1.1.0-blue.svg
-[npm-url]: https://www.npmjs.org/package/each-props/
-[mit-img]: https://img.shields.io/badge/license-MIT-green.svg
-[mit-url]: https://opensource.org/licenses.MIT
-[travis-img]: https://travis-ci.org/sttk/each-props.svg?branch=master
-[travis-url]: https://travis-ci.org/sttk/each-props
-[appveyor-img]: https://ci.appveyor.com/api/projects/status/github/sttk/each-props?branch=master&svg=true
-[appveyor-url]: https://ci.appveyor.com/project/sttk/each-props
-[coverage-img]: https://coveralls.io/repos/github/sttk/each-props/badge.svg?branch=master
-[coverage-url]: https://coveralls.io/github/sttk/each-props?branch=master
-
 Install
 -------
 
@@ -71,18 +59,20 @@ Executes the *callback* function for all properties.
     * **Arguments :**
         * **value** [any] : The property value.
         * **keyChain** [string] : A string concatenating the hierarchical keys with dots.
-        * **nodeInfo** [object] : An object which contains properties: `index`, `count`, `depth`, `parent`, `sort`, and can contains more properties by specifying in `opts` above. 
+        * **nodeInfo** [object] : An object which contains properties: `name`, `index`, `count`, `depth`, `parent`, `sort`, and can contains more properties by specifying in `opts` above. 
 
     * **Returns :** [boolean] : Stops digging child properties if `true`.
 
-    ##### **Properties of *nodeInfo* :**
+##### **Properties of *nodeInfo* :**
 
-    * ***nodeInfo*** *[object]*
-        * **index** [number] : The index of the property among the sibling properties.
-        * **count** [number] : The count of the sibling properties.
-        * **depth** [number] : The depth in the property hierarchy.
-        * **parent** [object] : The parent property.
-        * **sort** [function] : A sort function which orders the child properties. This property is inherited from **opts**, if specified.
+* ***nodeInfo*** *[object]*
+    * **name** [string] : The property name of this node.
+    * **index** [number] : The index of the property among the sibling properties.
+    * **count** [number] : The count of the sibling properties.
+    * **depth** [number] : The depth in the property hierarchy.
+    * **parent** [object] : The parent property.
+    * **sort** [function] : A sort function which orders the child properties. This property is inherited from **opts**, if specified.
+    * ... and any properties inherited from **opts**.
 
 ##### **Properties of *opts* :**
 
@@ -97,3 +87,16 @@ Copyright (C) 2016 Takayuki Sato
 
 This program is free software under [MIT][mit-url] License.
 See the file LICENSE in this distribution for more details.
+
+[repo-url]: https://github.com/sttk/each-props/
+[npm-img]: https://img.shields.io/badge/npm-v1.2.0-blue.svg
+[npm-url]: https://www.npmjs.org/package/each-props/
+[mit-img]: https://img.shields.io/badge/license-MIT-green.svg
+[mit-url]: https://opensource.org/licenses.MIT
+[travis-img]: https://travis-ci.org/sttk/each-props.svg?branch=master
+[travis-url]: https://travis-ci.org/sttk/each-props
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/github/sttk/each-props?branch=master&svg=true
+[appveyor-url]: https://ci.appveyor.com/project/sttk/each-props
+[coverage-img]: https://coveralls.io/repos/github/sttk/each-props/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/sttk/each-props?branch=master
+
