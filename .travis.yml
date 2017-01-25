@@ -13,3 +13,4 @@ after_success: 'npm run coveralls'
 
 os:
   - linux
+  - osx

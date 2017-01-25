@@ -38,7 +38,7 @@ var fnSort = function(arr) {
   }
 };
 
-/* eslint max-statements: "off", branch-style: "off" */
+/* eslint max-statements: "off", brace-style: "off" */
 
 describe('Argument test', function() {
 

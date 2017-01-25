@@ -18,7 +18,7 @@ function logger(value, keyChain, nodeInfo) {
   }
 }
 
-/* eslint max-statements: "off", branch-style: "off" */
+/* eslint max-statements: "off", brace-style: "off" */
 
 describe('Processing test', function() {
 
