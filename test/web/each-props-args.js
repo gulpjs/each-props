@@ -1,7 +1,7 @@
 'use strict';
 
-var eachProps = require('..');
-var chai = require('chai');
+
+
 var expect = chai.expect;
 
 function logger(value, keyChain, nodeInfo) {

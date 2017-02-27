@@ -1,9 +1,9 @@
 'use strict';
 
-var eachProps = require('..');
-var chai = require('chai');
+
+
 var expect = chai.expect;
-var objectAssign = require('object-assign');
+
 
 function logger(value, keyChain, nodeInfo) {
   var log = objectAssign({}, nodeInfo);
