@@ -11,6 +11,7 @@
     "test": "mocha",
     "coverage": "istanbul cover _mocha",
     "coveralls": "istanbul cover _mocha && istanbul-coveralls",
+    "web:install": "npm i phantomjs-prebuilt mocha-phantomjs",
     "web:build": "browserify index.js --standalone eachProps | uglifyjs --compress --mangle -o web/each-props.js && node test/web/make.js",
     "web:test": "mocha-phantomjs -p node_modules/.bin/phantomjs test/web/each-props.test.html"
   },
@@ -34,17 +35,15 @@
   "homepage": "https://github.com/sttk/each-props#readme",
   "dependencies": {
     "is-plain-object": "^2.0.1",
-    "object-assign": "^4.1.0"
+    "object-assign": "^4.1.1"
   },
   "devDependencies": {
-    "browserify": "^13.3.0",
+    "browserify": "^14.1.0",
     "chai": "^3.5.0",
-    "eslint": "^3.6.1",
+    "eslint": "^3.16.1",
     "istanbul": "^0.4.5",
     "istanbul-coveralls": "^1.0.3",
-    "mocha": "^3.1.0",
-    "mocha-phantomjs": "^4.1.0",
-    "phantomjs": "^2.1.7",
-    "uglify-js": "^2.7.5"
+    "mocha": "^3.2.0",
+    "uglify-js": "^2.8.1"
   }
 }
