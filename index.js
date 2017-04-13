@@ -4,7 +4,7 @@ var isPlainObject = require('is-plain-object');
 var objectAssign = require('object-assign');
 
 module.exports = function(obj, fn, opts) {
-  if (!isPlainObject(obj)) {
+  if (!isObject(obj)) {
     return;
   }
 
@@ -50,3 +50,8 @@ function forEachChild(node, baseKey, fn, depth, opts) {
     forEachChild(value, keyChain, fn, depth, opts);
   }
 }
+
+function isObject(v) {
+  return Object.prototype.toString.call(v) === '[object Object]';
+}
+
