@@ -3,10 +3,10 @@
 var eachProps = require('..');
 var chai = require('chai');
 var expect = chai.expect;
-var objectAssign = require('object-assign');
+var defaults = require('object.defaults/immutable');
 
 function logger(value, keyChain, nodeInfo) {
-  var log = objectAssign({}, nodeInfo);
+  var log = defaults(nodeInfo);
   delete log.parent;
   delete log.sort;
   delete log.return;

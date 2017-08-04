@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 
 function logger(value, keyChain, nodeInfo) {
-  var log = objectAssign({}, nodeInfo);
+  var log = defaults(nodeInfo);
   delete log.parent;
   delete log.sort;
   delete log.return;

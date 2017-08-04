@@ -35,7 +35,7 @@
   "homepage": "https://github.com/sttk/each-props#readme",
   "dependencies": {
     "is-plain-object": "^2.0.1",
-    "object-assign": "^4.1.1"
+    "object.defaults": "^1.1.0"
   },
   "devDependencies": {
     "browserify": "^14.1.0",
