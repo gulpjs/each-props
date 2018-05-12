@@ -93,6 +93,7 @@ Executes the *fn* function for all properties.
     | *depth*      | number | The depth of the property.               |
     | *parent*     | object | The parent node of the property.         |
     | *sort*       |function| A sort function which orders the child properties. This function is inherited from *opts*, if be specified. |
+
     ... and any properties inherited from *opts*.
 
 * **Properties of <i>opts</i>**
@@ -100,6 +101,7 @@ Executes the *fn* function for all properties.
     | Properties   |  Type  | Description                              |
     |:-------------|:------:|:-----------------------------------------|
     | *sort*       |function| A sort function which orders the same level properties. (Optional) |
+
     ... and any properties you want to pass to each node.
 
 ## License
@@ -110,7 +112,7 @@ This program is free software under [MIT][mit-url] License.
 See the file LICENSE in this distribution for more details.
 
 [repo-url]: https://github.com/sttk/each-props/
-[npm-img]: https://img.shields.io/badge/npm-v1.3.1-blue.svg
+[npm-img]: https://img.shields.io/badge/npm-v1.3.2-blue.svg
 [npm-url]: https://www.npmjs.org/package/each-props/
 [mit-img]: https://img.shields.io/badge/license-MIT-green.svg
 [mit-url]: https://opensource.org/licenses.MIT

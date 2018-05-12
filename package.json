@@ -1,6 +1,6 @@
 {
   "name": "each-props",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Processes each properties of an object deeply.",
   "main": "index.js",
   "files": [
