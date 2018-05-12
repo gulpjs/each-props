@@ -9,6 +9,7 @@ function make(filename) {
   fs.readFile(path.join(__dirname, '..', filename), opts, function(err, data) {
     throwIfError(err);
     data = data.replace(/[^\r\n]*require[^\r|\n]*/g, '');
+    data = '(function() {\n' + data + '}());\n';
     fs.writeFile(path.join(__dirname, filename), data, opts, throwIfError);
   });
 }

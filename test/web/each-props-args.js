@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 
@@ -746,3 +747,4 @@ describe('Argument test', function() {
 
 });
 
+}());
