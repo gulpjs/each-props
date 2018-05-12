@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "test": "mocha",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm test",
-    "coveralls": "nyc --reporter=text-lcov npm testa | coveralls",
+    "coveralls": "nyc --reporter=text-lcov npm test | coveralls",
     "web:build": "browserify index.js --standalone eachProps -o web/each-props.js && cd web && uglifyjs each-props.js --compress --mangle -o each-props.min.js --source-map url=each-props.min.js.map",
     "chrome:install": "npm i --no-save mocha-chrome",
     "chrome:test": "mocha-chrome test/web/browser-test.html",
