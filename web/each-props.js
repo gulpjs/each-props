@@ -1,7 +1,7 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.eachProps = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 'use strict';
 
-var isPlainObject = require('is-plain-object');
+var isPlainObject = require('is-plain-object').isPlainObject;
 var defaults = require('object.defaults/immutable');
 
 module.exports = function(obj, fn, opts) {
@@ -180,6 +180,10 @@ module.exports = function forOwn(obj, fn, thisArg) {
 };
 
 },{"for-in":4}],6:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
 /*!
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
@@ -187,27 +191,22 @@ module.exports = function forOwn(obj, fn, thisArg) {
  * Released under the MIT License.
  */
 
-'use strict';
-
-var isObject = require('isobject');
-
-function isObjectObject(o) {
-  return isObject(o) === true
-    && Object.prototype.toString.call(o) === '[object Object]';
+function isObject(o) {
+  return Object.prototype.toString.call(o) === '[object Object]';
 }
 
-module.exports = function isPlainObject(o) {
+function isPlainObject(o) {
   var ctor,prot;
 
-  if (isObjectObject(o) === false) return false;
+  if (isObject(o) === false) return false;
 
   // If has modified constructor
   ctor = o.constructor;
-  if (typeof ctor !== 'function') return false;
+  if (ctor === undefined) return true;
 
   // If has modified prototype
   prot = ctor.prototype;
-  if (isObjectObject(prot) === false) return false;
+  if (isObject(prot) === false) return false;
 
   // If constructor does not have an Object-specific method
   if (prot.hasOwnProperty('isPrototypeOf') === false) {
@@ -216,9 +215,11 @@ module.exports = function isPlainObject(o) {
 
   // Most likely a plain Object
   return true;
-};
+}
 
-},{"isobject":7}],7:[function(require,module,exports){
+exports.isPlainObject = isPlainObject;
+
+},{}],7:[function(require,module,exports){
 /*!
  * isobject <https://github.com/jonschlinkert/isobject>
  *

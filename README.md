@@ -106,7 +106,7 @@ Executes the *fn* function for all properties.
 
 ## License
 
-Copyright (C) 2016-2018 Takayuki Sato
+Copyright (C) 2016-2020 Takayuki Sato
 
 This program is free software under [MIT][mit-url] License.
 See the file LICENSE in this distribution for more details.

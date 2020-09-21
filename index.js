@@ -1,6 +1,6 @@
 'use strict';
 
-var isPlainObject = require('is-plain-object');
+var isPlainObject = require('is-plain-object').isPlainObject;
 var defaults = require('object.defaults/immutable');
 
 module.exports = function(obj, fn, opts) {
