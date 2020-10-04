@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sttk/each-props.git"
+    "url": "git+https://github.com/gulpjs/each-props.git"
   },
   "keywords": [
     "deep",
@@ -28,12 +28,12 @@
     "properties",
     "props"
   ],
-  "author": "Takayuki Sato",
+  "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sttk/each-props/issues"
+    "url": "https://github.com/gulpjs/each-props/issues"
   },
-  "homepage": "https://github.com/sttk/each-props#readme",
+  "homepage": "https://github.com/gulpjs/each-props#readme",
   "dependencies": {
     "is-plain-object": "^5.0.0",
     "object.defaults": "^1.1.0"

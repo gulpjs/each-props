@@ -106,20 +106,20 @@ Executes the *fn* function for all properties.
 
 ## License
 
-Copyright (C) 2016-2020 Takayuki Sato
+Copyright (C) 2016-2020 Gulp Team.
 
 This program is free software under [MIT][mit-url] License.
 See the file LICENSE in this distribution for more details.
 
-[repo-url]: https://github.com/sttk/each-props/
+[repo-url]: https://github.com/gulpjs/each-props/
 [npm-img]: https://img.shields.io/badge/npm-v1.3.2-blue.svg
 [npm-url]: https://www.npmjs.org/package/each-props/
 [mit-img]: https://img.shields.io/badge/license-MIT-green.svg
 [mit-url]: https://opensource.org/licenses.MIT
-[travis-img]: https://travis-ci.org/sttk/each-props.svg?branch=master
-[travis-url]: https://travis-ci.org/sttk/each-props
-[appveyor-img]: https://ci.appveyor.com/api/projects/status/github/sttk/each-props?branch=master&svg=true
-[appveyor-url]: https://ci.appveyor.com/project/sttk/each-props
-[coverage-img]: https://coveralls.io/repos/github/sttk/each-props/badge.svg?branch=master
-[coverage-url]: https://coveralls.io/github/sttk/each-props?branch=master
+[travis-img]: https://travis-ci.org/gulpjs/each-props.svg?branch=master
+[travis-url]: https://travis-ci.org/gulpjs/each-props
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/github/gulpjs/each-props?branch=master&svg=true
+[appveyor-url]: https://ci.appveyor.com/project/gulpjs/each-props
+[coverage-img]: https://coveralls.io/repos/github/gulpjs/each-props/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/gulpjs/each-props?branch=master
 
