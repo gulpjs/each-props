@@ -1,4 +1,12 @@
-# [each-props][repo-url] [![NPM][npm-img]][npm-url] [![MIT License][mit-img]][mit-url] [![Build Status][travis-img]][travis-url] [![Build Status][appveyor-img]][appveyor-url] [![Coverage Status][coverage-img]][coverage-url]
+<p align="center">
+  <a href="http://gulpjs.com">
+    <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
+  </a>
+</p>
+
+# each-props
+
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][ci-image]][ci-url] [![Coveralls Status][coveralls-image]][coveralls-url]
 
 Processes each properties of an object deeply.
 
@@ -106,20 +114,24 @@ Executes the *fn* function for all properties.
 
 ## License
 
-Copyright (C) 2016-2020 Gulp Team.
+Copyright (C) 2016-2021 Gulp Team.
 
 This program is free software under [MIT][mit-url] License.
 See the file LICENSE in this distribution for more details.
 
-[repo-url]: https://github.com/gulpjs/each-props/
-[npm-img]: https://img.shields.io/badge/npm-v1.3.2-blue.svg
-[npm-url]: https://www.npmjs.org/package/each-props/
-[mit-img]: https://img.shields.io/badge/license-MIT-green.svg
-[mit-url]: https://opensource.org/licenses.MIT
-[travis-img]: https://travis-ci.org/gulpjs/each-props.svg?branch=master
-[travis-url]: https://travis-ci.org/gulpjs/each-props
-[appveyor-img]: https://ci.appveyor.com/api/projects/status/github/gulpjs/each-props?branch=master&svg=true
-[appveyor-url]: https://ci.appveyor.com/project/gulpjs/each-props
-[coverage-img]: https://coveralls.io/repos/github/gulpjs/each-props/badge.svg?branch=master
-[coverage-url]: https://coveralls.io/github/gulpjs/each-props?branch=master
 
+<!-- prettier-ignore-start -->
+[downloads-image]: https://img.shields.io/npm/dm/each-props.svg?style=flat-square
+[npm-url]: https://www.npmjs.org/package/each-props
+[npm-image]: https://img.shields.io/npm/v/each-props.svg?style=flat-square
+
+[ci-url]: https://github.com/gulpjs/each-props/actions?query=workflow:dev
+[ci-image]: https://img.shields.io/github/workflow/status/gulpjs/each-props/dev?style=flat-square
+
+[coveralls-url]: https://coveralls.io/r/gulpjs/each-props
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/each-props/master.svg
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+[mit-url]: https://opensource.org/licenses/MIT
+<!-- prettier-ignore-end -->
