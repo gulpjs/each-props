@@ -1,6 +1,6 @@
 {
   "name": "each-props",
-  "version": "1.3.2",
+  "version": "2.0.0",
   "description": "Processes each properties of an object deeply.",
   "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
   "main": "index.js",
