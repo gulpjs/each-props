@@ -39,7 +39,7 @@ Apply a function to all (non plain object) properties.
 ```js
 var obj = { a: 1, b: { c: 'CCC', d: { e: 'EEE' } } };
 
-eachProps(obj, function(value, keyChain, nodeInfo) {
+eachProps(obj, function (value, keyChain, nodeInfo) {
   if (keyChain === 'a') {
     nodeInfo.parent['a'] = value * 2;
   } else if (keyChain === 'b.c') {
@@ -59,58 +59,58 @@ console.log(obj);
 
 ### <u>eachProps(obj, fn [, opts]) : void</u>
 
-Executes the *fn* function for all properties.
+Executes the _fn_ function for all properties.
 
 #### Parameters:
 
-| Parameter   |  Type  | Description                                    |
-|:------------|:------:|:-----------------------------------------------|
-| *obj*       | object | A plain object to be treated.                  |
-| *fn*        |function| A function to operate each properties.         |
-| *opts*      | object | An object to pass any data to each properties. |
+| Parameter |   Type   | Description                                    |
+| :-------- | :------: | :--------------------------------------------- |
+| _obj_     |  object  | A plain object to be treated.                  |
+| _fn_      | function | A function to operate each properties.         |
+| _opts_    |  object  | An object to pass any data to each properties. |
 
-* **API of *fn* function**
+- **API of _fn_ function**
 
-    #### <u>fn(value, keyChain, nodeInfo) : boolean</u>
+  #### <u>fn(value, keyChain, nodeInfo) : boolean</u>
 
-    This function is applied to all properties in an object.
+  This function is applied to all properties in an object.
 
-    ##### Parameters:
+  ##### Parameters:
 
-    | Parameter   |  Type  | Description                                    |
-    |:------------|:------:|:-----------------------------------------------|
-    | *value*     | any    | A property value.                              |
-    | *keyChain*  | string | A string concatenating the hierarchical keys with dots. |
-    | *nodeInfo*  | object | An object which contains node informations (See [below](#nodeinfo)). |
+  | Parameter  |  Type  | Description                                                          |
+  | :--------- | :----: | :------------------------------------------------------------------- |
+  | _value_    |  any   | A property value.                                                    |
+  | _keyChain_ | string | A string concatenating the hierarchical keys with dots.              |
+  | _nodeInfo_ | object | An object which contains node informations (See [below](#nodeinfo)). |
 
-    ##### Returns:
+  ##### Returns:
 
-    True, if stops digging child properties.
+  True, if stops digging child properties.
 
-    **Type:** boolean
+  **Type:** boolean
 
 <a name="nodeinfo"></a>
 
-* **Properties of <i>nodeInfo</i>**
+- **Properties of <i>nodeInfo</i>**
 
-    | Properties   |  Type  | Description                              |
-    |:-------------|:------:|:-----------------------------------------|
-    | *name*       | string | The property name of this node.          |
-    | *index*      | number | The index of the property among the sibling properties. |
-    | *count*      | number | The count of the sibling properties.     |
-    | *depth*      | number | The depth of the property.               |
-    | *parent*     | object | The parent node of the property.         |
-    | *sort*       |function| A sort function which orders the child properties. This function is inherited from *opts*, if be specified. |
+  | Properties |   Type   | Description                                                                                                 |
+  | :--------- | :------: | :---------------------------------------------------------------------------------------------------------- |
+  | _name_     |  string  | The property name of this node.                                                                             |
+  | _index_    |  number  | The index of the property among the sibling properties.                                                     |
+  | _count_    |  number  | The count of the sibling properties.                                                                        |
+  | _depth_    |  number  | The depth of the property.                                                                                  |
+  | _parent_   |  object  | The parent node of the property.                                                                            |
+  | _sort_     | function | A sort function which orders the child properties. This function is inherited from _opts_, if be specified. |
 
-    ... and any properties inherited from *opts*.
+  ... and any properties inherited from _opts_.
 
-* **Properties of <i>opts</i>**
+- **Properties of <i>opts</i>**
 
-    | Properties   |  Type  | Description                              |
-    |:-------------|:------:|:-----------------------------------------|
-    | *sort*       |function| A sort function which orders the same level properties. (Optional) |
+  | Properties |   Type   | Description                                                        |
+  | :--------- | :------: | :----------------------------------------------------------------- |
+  | _sort_     | function | A sort function which orders the same level properties. (Optional) |
 
-    ... and any properties you want to pass to each node.
+  ... and any properties you want to pass to each node.
 
 ## License
 
@@ -118,7 +118,6 @@ Copyright (C) 2016-2021 Gulp Team.
 
 This program is free software under [MIT][mit-url] License.
 See the file LICENSE in this distribution for more details.
-
 
 <!-- prettier-ignore-start -->
 [downloads-image]: https://img.shields.io/npm/dm/each-props.svg?style=flat-square

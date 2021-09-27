@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 function logger(value, keyChain, nodeInfo) {
   var log = {};
-  Object.keys(nodeInfo).forEach(function(key) {
+  Object.keys(nodeInfo).forEach(function (key) {
     log[key] = nodeInfo[key];
   });
   delete log.parent;
@@ -22,9 +22,8 @@ function logger(value, keyChain, nodeInfo) {
 
 /* eslint max-statements: "off", brace-style: "off" */
 
-describe('Processing test', function() {
-
-  it('Should succeed when an input object is single depth', function(done) {
+describe('Processing test', function () {
+  it('Should succeed when an input object is single depth', function (done) {
     var logs = [];
 
     var obj = { a: 1, b: 2, c: 3 };
@@ -38,7 +37,7 @@ describe('Processing test', function() {
     done();
   });
 
-  it('Should succeed when an input object is multiple depth', function(done) {
+  it('Should succeed when an input object is multiple depth', function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 'C', d: 'D', e: { f: 'F', g: 'G' } } };
@@ -56,13 +55,12 @@ describe('Processing test', function() {
     done();
   });
 
-  it('Should sort properties when a sort function is specified',
-  function(done) {
+  it('Should sort properties when a sort function is specified', function (done) {
     var logs = [];
 
     var obj = { q: 1, w: 2, e: 3, r: 4, t: 5, y: 6 };
     var opts = {
-      sort: function(arr) {
+      sort: function (arr) {
         return arr.sort();
       },
     };
@@ -79,40 +77,43 @@ describe('Processing test', function() {
     done();
   });
 
-  it('Should sort properties when an input object is multiple depth and' +
-     '\n\ta sort function is specified', function(done) {
-    var logs = [];
+  it(
+    'Should sort properties when an input object is multiple depth and' +
+      '\n\ta sort function is specified',
+    function (done) {
+      var logs = [];
 
-    var obj = { z: 1, x: { c: 'C', v: 'D', b: { n: 'F', m: 'G' } } };
-    var opts = {
-      sort: function(arr) {
-        return arr.sort();
-      },
-    };
-    eachProps(obj, logger.bind(logs), opts);
+      var obj = { z: 1, x: { c: 'C', v: 'D', b: { n: 'F', m: 'G' } } };
+      var opts = {
+        sort: function (arr) {
+          return arr.sort();
+        },
+      };
+      eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).to.deep.equal([
-      { name: 'x', keyChain: 'x', index: 0, count: 2, depth: 1 },
-      { name: 'b', keyChain: 'x.b', index: 0, count: 3, depth: 2 },
-      { name: 'm', keyChain: 'x.b.m', index: 0, count: 2, depth: 3 },
-      { name: 'n', keyChain: 'x.b.n', index: 1, count: 2, depth: 3 },
-      { name: 'c', keyChain: 'x.c', index: 1, count: 3, depth: 2 },
-      { name: 'v', keyChain: 'x.v', index: 2, count: 3, depth: 2 },
-      { name: 'z', keyChain: 'z', index: 1, count: 2, depth: 1 },
-    ]);
-    done();
-  });
+      expect(logs).to.deep.equal([
+        { name: 'x', keyChain: 'x', index: 0, count: 2, depth: 1 },
+        { name: 'b', keyChain: 'x.b', index: 0, count: 3, depth: 2 },
+        { name: 'm', keyChain: 'x.b.m', index: 0, count: 2, depth: 3 },
+        { name: 'n', keyChain: 'x.b.n', index: 1, count: 2, depth: 3 },
+        { name: 'c', keyChain: 'x.c', index: 1, count: 3, depth: 2 },
+        { name: 'v', keyChain: 'x.v', index: 2, count: 3, depth: 2 },
+        { name: 'z', keyChain: 'z', index: 1, count: 2, depth: 1 },
+      ]);
+      done();
+    }
+  );
 
-  it('Should Stop digging when the return value is true', function(done) {
+  it('Should Stop digging when the return value is true', function (done) {
     var logs = [];
 
     var obj = { z: 1, x: { c: 'C', v: 'D', b: { n: 'F', m: 'G' }, a: 'H' } };
     var opts = {
-      sort: function(arr) {
+      sort: function (arr) {
         return arr.sort();
       },
-      return: function(keyChain) {
-        return (keyChain === 'x.b');
+      return: function (keyChain) {
+        return keyChain === 'x.b';
       },
     };
     eachProps(obj, logger.bind(logs), opts);
@@ -128,12 +129,12 @@ describe('Processing test', function() {
     done();
   });
 
-  it('Should pass properties in opts to all nodes', function(done) {
+  it('Should pass properties in opts to all nodes', function (done) {
     var logs = [];
 
     var obj = { z: 1, x: { c: 'C', v: 'D', b: { n: 'F', m: 'G' } } };
     var opts = {
-      sort: function(arr) {
+      sort: function (arr) {
         return arr.sort();
       },
       m: 'ABC',
@@ -142,22 +143,70 @@ describe('Processing test', function() {
     eachProps(obj, logger.bind(logs), opts);
 
     expect(logs).to.deep.equal([
-      { name: 'x', keyChain: 'x', index: 0, count: 2, depth: 1,
-        m: 'ABC', n: 9 },
-      { name: 'b', keyChain: 'x.b', index: 0, count: 3, depth: 2,
-        m: 'ABC', n: 9 },
-      { name: 'm', keyChain: 'x.b.m', index: 0, count: 2, depth: 3,
-        m: 'ABC', n: 9 },
-      { name: 'n', keyChain: 'x.b.n', index: 1, count: 2, depth: 3,
-        m: 'ABC', n: 9 },
-      { name: 'c', keyChain: 'x.c', index: 1, count: 3, depth: 2,
-        m: 'ABC', n: 9 },
-      { name: 'v', keyChain: 'x.v', index: 2, count: 3, depth: 2,
-        m: 'ABC', n: 9 },
-      { name: 'z', keyChain: 'z', index: 1, count: 2, depth: 1,
-        m: 'ABC', n: 9 },
+      {
+        name: 'x',
+        keyChain: 'x',
+        index: 0,
+        count: 2,
+        depth: 1,
+        m: 'ABC',
+        n: 9,
+      },
+      {
+        name: 'b',
+        keyChain: 'x.b',
+        index: 0,
+        count: 3,
+        depth: 2,
+        m: 'ABC',
+        n: 9,
+      },
+      {
+        name: 'm',
+        keyChain: 'x.b.m',
+        index: 0,
+        count: 2,
+        depth: 3,
+        m: 'ABC',
+        n: 9,
+      },
+      {
+        name: 'n',
+        keyChain: 'x.b.n',
+        index: 1,
+        count: 2,
+        depth: 3,
+        m: 'ABC',
+        n: 9,
+      },
+      {
+        name: 'c',
+        keyChain: 'x.c',
+        index: 1,
+        count: 3,
+        depth: 2,
+        m: 'ABC',
+        n: 9,
+      },
+      {
+        name: 'v',
+        keyChain: 'x.v',
+        index: 2,
+        count: 3,
+        depth: 2,
+        m: 'ABC',
+        n: 9,
+      },
+      {
+        name: 'z',
+        keyChain: 'z',
+        index: 1,
+        count: 2,
+        depth: 1,
+        m: 'ABC',
+        n: 9,
+      },
     ]);
     done();
   });
-
 });
