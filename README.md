@@ -45,7 +45,7 @@ console.log(obj);
 
 ## API
 
-### <u>eachProps(obj, fn [, opts]) : void</u>
+### eachProps(obj, fn [, opts]) : void
 
 Executes the _fn_ function for all properties.
 
@@ -59,17 +59,17 @@ Executes the _fn_ function for all properties.
 
 - **API of _fn_ function**
 
-  #### <u>fn(value, keyChain, nodeInfo) : boolean</u>
+  #### fn(value, keyChain, nodeInfo) : boolean
 
   This function is applied to all properties in an object.
 
   ##### Parameters:
 
-  | Parameter  |  Type  | Description                                                          |
-  | :--------- | :----: | :------------------------------------------------------------------- |
-  | _value_    |  any   | A property value.                                                    |
-  | _keyChain_ | string | A string concatenating the hierarchical keys with dots.              |
-  | _nodeInfo_ | object | An object which contains node informations (See [below](#nodeinfo)). |
+  | Parameter  |  Type  | Description                                                         |
+  | :--------- | :----: | :------------------------------------------------------------------ |
+  | _value_    |  any   | A property value.                                                   |
+  | _keyChain_ | string | A string concatenating the hierarchical keys with dots.             |
+  | _nodeInfo_ | object | An object which contains node informations (See [below][nodeinfo]). |
 
   ##### Returns:
 
@@ -77,9 +77,7 @@ Executes the _fn_ function for all properties.
 
   **Type:** boolean
 
-<a name="nodeinfo"></a>
-
-- **Properties of <i>nodeInfo</i>**
+- ##### **Properties of _nodeInfo_**
 
   | Properties |   Type   | Description                                                                                                 |
   | :--------- | :------: | :---------------------------------------------------------------------------------------------------------- |
@@ -92,7 +90,7 @@ Executes the _fn_ function for all properties.
 
   ... and any properties inherited from _opts_.
 
-- **Properties of <i>opts</i>**
+- ##### **Properties of _opts_**
 
   | Properties |   Type   | Description                                                        |
   | :--------- | :------: | :----------------------------------------------------------------- |
@@ -117,5 +115,5 @@ MIT
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
-[mit-url]: https://opensource.org/licenses/MIT
+[nodeinfo]: #properties-of-nodeinfo
 <!-- prettier-ignore-end -->
