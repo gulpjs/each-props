@@ -18,25 +18,13 @@ To install from npm:
 $ npm i each-props --save
 ```
 
-## Load this module
-
-For Node.js:
-
-```js
-const eachProps = require('each-props');
-```
-
-For Web browser:
-
-```html
-<script src="each-props.min.js"></script>
-```
-
 ## Usage
 
 Apply a function to all (non plain object) properties.
 
 ```js
+const eachProps = require('each-props');
+
 var obj = { a: 1, b: { c: 'CCC', d: { e: 'EEE' } } };
 
 eachProps(obj, function (value, keyChain, nodeInfo) {
