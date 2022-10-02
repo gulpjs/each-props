@@ -102,10 +102,7 @@ Executes the _fn_ function for all properties.
 
 ## License
 
-Copyright (C) 2016-2022 Gulp Team.
-
-This program is free software under [MIT][mit-url] License.
-See the file LICENSE in this distribution for more details.
+MIT
 
 <!-- prettier-ignore-start -->
 [downloads-image]: https://img.shields.io/npm/dm/each-props.svg?style=flat-square
