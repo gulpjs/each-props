@@ -38,8 +38,6 @@ var fnSort = function (arr) {
   }
 };
 
-/* eslint max-statements: "off", brace-style: "off" */
-
 describe('Argument test', function () {
   it('Should process normally when args are normal', function (done) {
     var logs = [];

@@ -20,8 +20,6 @@ function logger(value, keyChain, nodeInfo) {
   }
 }
 
-/* eslint max-statements: "off", brace-style: "off" */
-
 describe('Processing test', function () {
   it('Should succeed when an input object is single depth', function (done) {
     var logs = [];
