@@ -5,21 +5,15 @@
   "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "LICENSE"
   ],
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "nyc mocha",
-    "web:build": "browserify index.js --standalone eachProps -o web/each-props.js && cd web && uglifyjs each-props.js --compress --mangle -o each-props.min.js --source-map url=each-props.min.js.map",
-    "chrome:install": "npm i --no-save mocha-chrome",
-    "chrome:test": "mocha-chrome test/web/browser-test.html",
-    "build": "npm run lint && npm run test && npm run web:build && node test/web/make.js"
+    "test": "nyc mocha --async-only"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gulpjs/each-props.git"
-  },
+  "repository": "gulpjs/each-props",
   "keywords": [
     "deep",
     "each",
@@ -32,10 +26,6 @@
   "engines": {
     "node": ">= 10.13.0"
   },
-  "bugs": {
-    "url": "https://github.com/gulpjs/each-props/issues"
-  },
-  "homepage": "https://github.com/gulpjs/each-props#readme",
   "nyc": {
     "reporter": [
       "lcov",
@@ -50,13 +40,11 @@
     "object.defaults": "^1.1.0"
   },
   "devDependencies": {
-    "browserify": "^17.0.0",
-    "chai": "^4.3.4",
     "eslint": "^7.32.0",
     "eslint-config-gulp": "^5.0.1",
     "eslint-plugin-node": "^11.1.0",
+    "expect": "^27.5.1",
     "mocha": "^8.4.0",
-    "nyc": "^15.1.0",
-    "uglify-js": "^3.14.2"
+    "nyc": "^15.1.0"
   }
 }

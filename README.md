@@ -18,25 +18,13 @@ To install from npm:
 $ npm i each-props --save
 ```
 
-## Load this module
-
-For Node.js:
-
-```js
-const eachProps = require('each-props');
-```
-
-For Web browser:
-
-```html
-<script src="each-props.min.js"></script>
-```
-
 ## Usage
 
 Apply a function to all (non plain object) properties.
 
 ```js
+const eachProps = require('each-props');
+
 var obj = { a: 1, b: { c: 'CCC', d: { e: 'EEE' } } };
 
 eachProps(obj, function (value, keyChain, nodeInfo) {
@@ -114,10 +102,7 @@ Executes the _fn_ function for all properties.
 
 ## License
 
-Copyright (C) 2016-2021 Gulp Team.
-
-This program is free software under [MIT][mit-url] License.
-See the file LICENSE in this distribution for more details.
+MIT
 
 <!-- prettier-ignore-start -->
 [downloads-image]: https://img.shields.io/npm/dm/each-props.svg?style=flat-square
