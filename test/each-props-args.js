@@ -1,8 +1,7 @@
 'use strict';
 
 var eachProps = require('..');
-var chai = require('chai');
-var expect = chai.expect;
+var expect = require('expect');
 
 function logger(value, keyChain, nodeInfo) {
   this.push({
@@ -46,8 +45,8 @@ describe('Argument test', function () {
     var opts = { xxx: true };
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).to.deep.equal({ a: 1, b: { c: 2 } });
-    expect(logs).to.deep.equal([
+    expect(obj).toEqual({ a: 1, b: { c: 2 } });
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -95,8 +94,8 @@ describe('Argument test', function () {
     var opts = { sort: fnSort };
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).to.deep.equal({ a: 1, b: { c: 2 } });
-    expect(logs).to.deep.equal([
+    expect(obj).toEqual({ a: 1, b: { c: 2 } });
+    expect(logs).toEqual([
       {
         value: { c: 2 },
         keyChain: 'b',
@@ -144,8 +143,8 @@ describe('Argument test', function () {
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).to.equal(undefined);
-    expect(logs).to.deep.equal([]);
+    expect(obj).toBeUndefined();
+    expect(logs).toEqual([]);
     done();
   });
 
@@ -156,8 +155,8 @@ describe('Argument test', function () {
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).to.equal(null);
-    expect(logs).to.deep.equal([]);
+    expect(obj).toBeNull();
+    expect(logs).toEqual([]);
     done();
   });
 
@@ -168,8 +167,8 @@ describe('Argument test', function () {
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).to.equal(true);
-    expect(logs).to.deep.equal([]);
+    expect(obj).toEqual(true);
+    expect(logs).toEqual([]);
     done();
   });
 
@@ -180,8 +179,8 @@ describe('Argument test', function () {
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).to.equal(9);
-    expect(logs).to.deep.equal([]);
+    expect(obj).toEqual(9);
+    expect(logs).toEqual([]);
     done();
   });
 
@@ -192,8 +191,8 @@ describe('Argument test', function () {
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).to.equal('ABC');
-    expect(logs).to.deep.equal([]);
+    expect(obj).toEqual('ABC');
+    expect(logs).toEqual([]);
     done();
   });
 
@@ -204,8 +203,8 @@ describe('Argument test', function () {
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).to.deep.equal([{ a: 1 }, { b: 2 }, { c: 3 }]);
-    expect(logs).to.deep.equal([]);
+    expect(obj).toEqual([{ a: 1 }, { b: 2 }, { c: 3 }]);
+    expect(logs).toEqual([]);
     done();
   });
 
@@ -216,7 +215,7 @@ describe('Argument test', function () {
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).to.deep.equal([]);
+    expect(logs).toEqual([]);
     done();
   });
 
@@ -227,7 +226,7 @@ describe('Argument test', function () {
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).to.deep.equal([]);
+    expect(logs).toEqual([]);
     done();
   });
 
@@ -238,8 +237,8 @@ describe('Argument test', function () {
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).to.deep.equal({});
-    expect(logs).to.deep.equal([]);
+    expect(obj).toEqual({});
+    expect(logs).toEqual([]);
     done();
   });
 
@@ -247,7 +246,7 @@ describe('Argument test', function () {
     var obj = { a: 1 };
     var fn = undefined;
     eachProps(obj, fn);
-    expect(obj).to.deep.equal({ a: 1 });
+    expect(obj).toEqual({ a: 1 });
     done();
   });
 
@@ -255,7 +254,7 @@ describe('Argument test', function () {
     var obj = { a: 1 };
     var fn = null;
     eachProps(obj, fn);
-    expect(obj).to.deep.equal({ a: 1 });
+    expect(obj).toEqual({ a: 1 });
     done();
   });
 
@@ -263,7 +262,7 @@ describe('Argument test', function () {
     var obj = { a: 1 };
     var fn = true;
     eachProps(obj, fn);
-    expect(obj).to.deep.equal({ a: 1 });
+    expect(obj).toEqual({ a: 1 });
     done();
   });
 
@@ -271,7 +270,7 @@ describe('Argument test', function () {
     var obj = { a: 1 };
     var fn = 123;
     eachProps(obj, fn);
-    expect(obj).to.deep.equal({ a: 1 });
+    expect(obj).toEqual({ a: 1 });
     done();
   });
 
@@ -279,7 +278,7 @@ describe('Argument test', function () {
     var obj = { a: 1 };
     var fn = 'ABC';
     eachProps(obj, fn);
-    expect(obj).to.deep.equal({ a: 1 });
+    expect(obj).toEqual({ a: 1 });
     done();
   });
 
@@ -287,7 +286,7 @@ describe('Argument test', function () {
     var obj = { a: 1 };
     var fn = ['A', 'B', 'C'];
     eachProps(obj, fn);
-    expect(obj).to.deep.equal({ a: 1 });
+    expect(obj).toEqual({ a: 1 });
     done();
   });
 
@@ -295,7 +294,7 @@ describe('Argument test', function () {
     var obj = { a: 1 };
     var fn = { a: 'A', b: 'B', c: 'C' };
     eachProps(obj, fn);
-    expect(obj).to.deep.equal({ a: 1 });
+    expect(obj).toEqual({ a: 1 });
     done();
   });
 
@@ -303,7 +302,7 @@ describe('Argument test', function () {
     var obj = { a: 1 };
     var fn = new Date(0);
     eachProps(obj, fn);
-    expect(obj).to.deep.equal({ a: 1 });
+    expect(obj).toEqual({ a: 1 });
     done();
   });
 
@@ -314,7 +313,7 @@ describe('Argument test', function () {
     var opts = undefined;
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -353,7 +352,7 @@ describe('Argument test', function () {
     var opts = null;
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -391,7 +390,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = true;
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -429,7 +428,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = 123;
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -467,7 +466,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = 'ABC';
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -505,7 +504,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = [1, 2, 3];
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -543,7 +542,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = fnNoReturn;
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -581,7 +580,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = new Date(0);
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -619,7 +618,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -657,7 +656,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: undefined };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -704,7 +703,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: null };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -751,7 +750,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: true };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -798,7 +797,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: 123 };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -845,7 +844,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: 'ABC' };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -892,7 +891,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: [1, 2, 3] };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -939,7 +938,7 @@ describe('Argument test', function () {
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: { x: 1 } };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         value: 1,
         keyChain: 'a',
@@ -989,7 +988,7 @@ describe('Argument test', function () {
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnNoReturn };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).to.deep.equal([
+      expect(logs).toEqual([
         {
           value: 1,
           keyChain: 'a',
@@ -1040,7 +1039,7 @@ describe('Argument test', function () {
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnNull };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).to.deep.equal([
+      expect(logs).toEqual([
         {
           value: 1,
           keyChain: 'a',
@@ -1091,7 +1090,7 @@ describe('Argument test', function () {
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnBool };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).to.deep.equal([
+      expect(logs).toEqual([
         {
           value: 1,
           keyChain: 'a',
@@ -1142,7 +1141,7 @@ describe('Argument test', function () {
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnNum };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).to.deep.equal([
+      expect(logs).toEqual([
         {
           value: 1,
           keyChain: 'a',
@@ -1193,7 +1192,7 @@ describe('Argument test', function () {
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnStr };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).to.deep.equal([
+      expect(logs).toEqual([
         {
           value: 1,
           keyChain: 'a',
@@ -1244,7 +1243,7 @@ describe('Argument test', function () {
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnFunc };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).to.deep.equal([
+      expect(logs).toEqual([
         {
           value: 1,
           keyChain: 'a',
@@ -1295,7 +1294,7 @@ describe('Argument test', function () {
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnObj };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).to.deep.equal([
+      expect(logs).toEqual([
         {
           value: 1,
           keyChain: 'a',

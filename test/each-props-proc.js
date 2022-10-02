@@ -1,8 +1,7 @@
 'use strict';
 
 var eachProps = require('..');
-var chai = require('chai');
-var expect = chai.expect;
+var expect = require('expect');
 
 function logger(value, keyChain, nodeInfo) {
   var log = {};
@@ -27,7 +26,7 @@ describe('Processing test', function () {
     var obj = { a: 1, b: 2, c: 3 };
     eachProps(obj, logger.bind(logs));
 
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       { keyChain: 'a', index: 0, count: 3, depth: 1, name: 'a' },
       { keyChain: 'b', index: 1, count: 3, depth: 1, name: 'b' },
       { keyChain: 'c', index: 2, count: 3, depth: 1, name: 'c' },
@@ -41,7 +40,7 @@ describe('Processing test', function () {
     var obj = { a: 1, b: { c: 'C', d: 'D', e: { f: 'F', g: 'G' } } };
     eachProps(obj, logger.bind(logs));
 
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       { keyChain: 'a', index: 0, count: 2, depth: 1, name: 'a' },
       { keyChain: 'b', index: 1, count: 2, depth: 1, name: 'b' },
       { keyChain: 'b.c', index: 0, count: 3, depth: 2, name: 'c' },
@@ -64,7 +63,7 @@ describe('Processing test', function () {
     };
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       { keyChain: 'e', name: 'e', index: 0, count: 6, depth: 1 },
       { keyChain: 'q', name: 'q', index: 1, count: 6, depth: 1 },
       { keyChain: 'r', name: 'r', index: 2, count: 6, depth: 1 },
@@ -89,7 +88,7 @@ describe('Processing test', function () {
       };
       eachProps(obj, logger.bind(logs), opts);
 
-      expect(logs).to.deep.equal([
+      expect(logs).toEqual([
         { name: 'x', keyChain: 'x', index: 0, count: 2, depth: 1 },
         { name: 'b', keyChain: 'x.b', index: 0, count: 3, depth: 2 },
         { name: 'm', keyChain: 'x.b.m', index: 0, count: 2, depth: 3 },
@@ -116,7 +115,7 @@ describe('Processing test', function () {
     };
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       { name: 'x', keyChain: 'x', index: 0, count: 2, depth: 1 },
       { name: 'a', keyChain: 'x.a', index: 0, count: 4, depth: 2 },
       { name: 'b', keyChain: 'x.b', index: 1, count: 4, depth: 2 },
@@ -140,7 +139,7 @@ describe('Processing test', function () {
     };
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).to.deep.equal([
+    expect(logs).toEqual([
       {
         name: 'x',
         keyChain: 'x',
