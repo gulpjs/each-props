@@ -11,12 +11,9 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "nyc mocha"
+    "test": "nyc mocha --async-only"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gulpjs/each-props.git"
-  },
+  "repository": "gulpjs/each-props",
   "keywords": [
     "deep",
     "each",
@@ -29,10 +26,6 @@
   "engines": {
     "node": ">= 10.13.0"
   },
-  "bugs": {
-    "url": "https://github.com/gulpjs/each-props/issues"
-  },
-  "homepage": "https://github.com/gulpjs/each-props#readme",
   "nyc": {
     "reporter": [
       "lcov",
