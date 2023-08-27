@@ -108,7 +108,7 @@ MIT
 [npm-image]: https://img.shields.io/npm/v/each-props.svg?style=flat-square
 
 [ci-url]: https://github.com/gulpjs/each-props/actions?query=workflow:dev
-[ci-image]: https://img.shields.io/github/workflow/status/gulpjs/each-props/dev?style=flat-square
+[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/each-props/dev.yml?branch=master&style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/each-props
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/each-props/master.svg
