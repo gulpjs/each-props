@@ -3,17 +3,32 @@
   "version": "3.0.0",
   "description": "Processes each properties of an object deeply.",
   "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
-  "main": "index.js",
+  "engines": {
+    "node": ">= 22.15.0"
+  },
+  "main": "./index.js",
   "files": [
     "index.js",
     "LICENSE"
   ],
   "scripts": {
+    "format-check": "prettier . --check",
+    "format-write": "prettier . --write",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "nyc mocha --async-only"
   },
-  "repository": "gulpjs/each-props",
+  "funding": "https://github.com/sponsors/gulpjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gulpjs/each-props.git"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ]
+  },
   "keywords": [
     "deep",
     "each",
@@ -23,28 +38,17 @@
     "props"
   ],
   "license": "MIT",
-  "engines": {
-    "node": ">= 10.13.0"
-  },
-  "nyc": {
-    "reporter": [
-      "lcov",
-      "text-summary"
-    ]
-  },
-  "prettier": {
-    "singleQuote": true
+  "devDependencies": {
+    "eslint": "10.11.0",
+    "eslint-config-gulp": "7.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "expect": "^27.5.1",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0",
+    "prettier": "3.9.6"
   },
   "dependencies": {
     "is-plain-object": "^5.0.0",
     "object.defaults": "^1.1.0"
-  },
-  "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-gulp": "^5.0.1",
-    "eslint-plugin-node": "^11.1.0",
-    "expect": "^27.5.1",
-    "mocha": "^8.4.0",
-    "nyc": "^15.1.0"
   }
 }
