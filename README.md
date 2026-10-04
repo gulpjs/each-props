@@ -23,19 +23,19 @@ $ npm i each-props --save
 Apply a function to all (non plain object) properties.
 
 ```js
-const eachProps = require('each-props');
+const eachProps = require("each-props");
 
-var obj = { a: 1, b: { c: 'CCC', d: { e: 'EEE' } } };
+var obj = { a: 1, b: { c: "CCC", d: { e: "EEE" } } };
 
 eachProps(obj, function (value, keyChain, nodeInfo) {
-  if (keyChain === 'a') {
-    nodeInfo.parent['a'] = value * 2;
-  } else if (keyChain === 'b.c') {
-    nodeInfo.parent['c'] = value.toLowerCase();
-  } else if (keyChain === 'b.d') {
+  if (keyChain === "a") {
+    nodeInfo.parent["a"] = value * 2;
+  } else if (keyChain === "b.c") {
+    nodeInfo.parent["c"] = value.toLowerCase();
+  } else if (keyChain === "b.d") {
     return true; // stop to dig
-  } else if (keyChain === 'b.d.e') {
-    nodeInfo.parent['e'] = value.toLowerCase();
+  } else if (keyChain === "b.d.e") {
+    nodeInfo.parent["e"] = value.toLowerCase();
   }
 });
 

@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-var eachProps = require('..');
-var expect = require('expect');
+var eachProps = require("..");
+var expect = require("expect");
 
 function logger(value, keyChain, nodeInfo) {
   this.push({
@@ -22,7 +22,7 @@ var fnReturnNum = function () {
   return 123;
 };
 var fnReturnStr = function () {
-  return 'abc';
+  return "abc";
 };
 var fnReturnFunc = function () {
   return fnNoReturn;
@@ -37,8 +37,8 @@ var fnSort = function (arr) {
   }
 };
 
-describe('Argument test', function () {
-  it('Should process normally when args are normal', function (done) {
+describe("Argument test", function () {
+  it("Should process normally when args are normal", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -49,45 +49,45 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           xxx: true,
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           xxx: true,
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
+        keyChain: "b.c",
         nodeInfo: {
           index: 0,
           count: 1,
           depth: 2,
           parent: { c: 2 },
           xxx: true,
-          name: 'c',
+          name: "c",
         },
       },
     ]);
     done();
   });
 
-  it('Should process normally when args are normal (opts.sort is specified', function (done) {
+  it("Should process normally when args are normal (opts.sort is specified", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -98,45 +98,45 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: fnSort,
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
+        keyChain: "b.c",
         nodeInfo: {
           index: 0,
           count: 1,
           depth: 2,
           parent: { c: 2 },
           sort: fnSort,
-          name: 'c',
+          name: "c",
         },
       },
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: fnSort,
-          name: 'a',
+          name: "a",
         },
       },
     ]);
     done();
   });
 
-  it('Should process nothing when 1st arg is undefined', function (done) {
+  it("Should process nothing when 1st arg is undefined", function (done) {
     var logs = [];
 
     var obj = undefined;
@@ -148,7 +148,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 1st arg is null', function (done) {
+  it("Should process nothing when 1st arg is null", function (done) {
     var logs = [];
 
     var obj = null;
@@ -160,7 +160,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 1st arg is not a boolean', function (done) {
+  it("Should process nothing when 1st arg is not a boolean", function (done) {
     var logs = [];
 
     var obj = true;
@@ -172,7 +172,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 1st arg is a number', function (done) {
+  it("Should process nothing when 1st arg is a number", function (done) {
     var logs = [];
 
     var obj = 9;
@@ -184,19 +184,19 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 1st arg is a string', function (done) {
+  it("Should process nothing when 1st arg is a string", function (done) {
     var logs = [];
 
-    var obj = 'ABC';
+    var obj = "ABC";
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).toEqual('ABC');
+    expect(obj).toEqual("ABC");
     expect(logs).toEqual([]);
     done();
   });
 
-  it('Should process nothing when 1st arg is an array', function (done) {
+  it("Should process nothing when 1st arg is an array", function (done) {
     var logs = [];
 
     var obj = [{ a: 1 }, { b: 2 }, { c: 3 }];
@@ -208,7 +208,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 1st arg is a function', function (done) {
+  it("Should process nothing when 1st arg is a function", function (done) {
     var logs = [];
 
     var obj = fnNoReturn;
@@ -219,7 +219,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 1st arg is a typed object', function (done) {
+  it("Should process nothing when 1st arg is a typed object", function (done) {
     var logs = [];
 
     var obj = new Date(0);
@@ -230,7 +230,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 1st arg is an empty plain object', function (done) {
+  it("Should process nothing when 1st arg is an empty plain object", function (done) {
     var logs = [];
 
     var obj = {};
@@ -242,7 +242,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 2nd arg is undefined', function (done) {
+  it("Should process nothing when 2nd arg is undefined", function (done) {
     var obj = { a: 1 };
     var fn = undefined;
     eachProps(obj, fn);
@@ -250,7 +250,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 2nd arg is null', function (done) {
+  it("Should process nothing when 2nd arg is null", function (done) {
     var obj = { a: 1 };
     var fn = null;
     eachProps(obj, fn);
@@ -258,7 +258,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 2nd arg is a boolean', function (done) {
+  it("Should process nothing when 2nd arg is a boolean", function (done) {
     var obj = { a: 1 };
     var fn = true;
     eachProps(obj, fn);
@@ -266,7 +266,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 2nd arg is a number', function (done) {
+  it("Should process nothing when 2nd arg is a number", function (done) {
     var obj = { a: 1 };
     var fn = 123;
     eachProps(obj, fn);
@@ -274,31 +274,31 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 2nd arg is a string', function (done) {
+  it("Should process nothing when 2nd arg is a string", function (done) {
     var obj = { a: 1 };
-    var fn = 'ABC';
+    var fn = "ABC";
     eachProps(obj, fn);
     expect(obj).toEqual({ a: 1 });
     done();
   });
 
-  it('Should process nothing when 2nd arg is an array', function (done) {
+  it("Should process nothing when 2nd arg is an array", function (done) {
     var obj = { a: 1 };
-    var fn = ['A', 'B', 'C'];
+    var fn = ["A", "B", "C"];
     eachProps(obj, fn);
     expect(obj).toEqual({ a: 1 });
     done();
   });
 
-  it('Should process nothing when 2nd arg is an plain object', function (done) {
+  it("Should process nothing when 2nd arg is an plain object", function (done) {
     var obj = { a: 1 };
-    var fn = { a: 'A', b: 'B', c: 'C' };
+    var fn = { a: "A", b: "B", c: "C" };
     eachProps(obj, fn);
     expect(obj).toEqual({ a: 1 });
     done();
   });
 
-  it('Should process nothing when 2nd arg is an typed object', function (done) {
+  it("Should process nothing when 2nd arg is an typed object", function (done) {
     var obj = { a: 1 };
     var fn = new Date(0);
     eachProps(obj, fn);
@@ -306,7 +306,7 @@ describe('Argument test', function () {
     done();
   });
 
-  it('Should process nothing when 3rd arg is undefined', function (done) {
+  it("Should process nothing when 3rd arg is undefined", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -316,36 +316,36 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
-        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: 'c' },
+        keyChain: "b.c",
+        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
     done();
   });
 
-  it('Should process nothing when 3rd arg is null', function (done) {
+  it("Should process nothing when 3rd arg is null", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -355,36 +355,36 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
-        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: 'c' },
+        keyChain: "b.c",
+        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
     done();
   });
 
-  it('Should process nothing when 3rd arg is a boolean', function (done) {
+  it("Should process nothing when 3rd arg is a boolean", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -393,36 +393,36 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
-        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: 'c' },
+        keyChain: "b.c",
+        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
     done();
   });
 
-  it('Should process nothing when 3rd arg is a number', function (done) {
+  it("Should process nothing when 3rd arg is a number", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -431,74 +431,74 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
-        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: 'c' },
+        keyChain: "b.c",
+        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
     done();
   });
 
-  it('Should process nothing when 3rd arg is a string', function (done) {
+  it("Should process nothing when 3rd arg is a string", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
-    var opts = 'ABC';
+    var opts = "ABC";
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
-        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: 'c' },
+        keyChain: "b.c",
+        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
     done();
   });
 
-  it('Should process nothing when 3rd arg is an array', function (done) {
+  it("Should process nothing when 3rd arg is an array", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -507,36 +507,36 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
-        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: 'c' },
+        keyChain: "b.c",
+        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
     done();
   });
 
-  it('Should process nothing when 3rd arg is a function', function (done) {
+  it("Should process nothing when 3rd arg is a function", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -545,36 +545,36 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
-        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: 'c' },
+        keyChain: "b.c",
+        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
     done();
   });
 
-  it('Should process nothing when 3rd arg is a typed object', function (done) {
+  it("Should process nothing when 3rd arg is a typed object", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -583,36 +583,36 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
-        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: 'c' },
+        keyChain: "b.c",
+        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
     done();
   });
 
-  it('Should process nothing when 3rd arg is an empty plain object', function (done) {
+  it("Should process nothing when 3rd arg is an empty plain object", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -621,36 +621,36 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
-        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: 'c' },
+        keyChain: "b.c",
+        nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
     done();
   });
 
-  it('Should not sort keys when `.sort` of 3rd arg is undefined', function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is undefined", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -659,45 +659,45 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: undefined,
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: undefined,
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
+        keyChain: "b.c",
         nodeInfo: {
           index: 0,
           count: 1,
           depth: 2,
           parent: { c: 2 },
           sort: undefined,
-          name: 'c',
+          name: "c",
         },
       },
     ]);
     done();
   });
 
-  it('Should not sort keys when `.sort` of 3rd arg is null', function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is null", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -706,45 +706,45 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: null,
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: null,
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
+        keyChain: "b.c",
         nodeInfo: {
           index: 0,
           count: 1,
           depth: 2,
           parent: { c: 2 },
           sort: null,
-          name: 'c',
+          name: "c",
         },
       },
     ]);
     done();
   });
 
-  it('Should not sort keys when `.sort` of 3rd arg is a boolean', function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is a boolean", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -753,45 +753,45 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: true,
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: true,
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
+        keyChain: "b.c",
         nodeInfo: {
           index: 0,
           count: 1,
           depth: 2,
           parent: { c: 2 },
           sort: true,
-          name: 'c',
+          name: "c",
         },
       },
     ]);
     done();
   });
 
-  it('Should not sort keys when `.sort` of 3rd arg is a number', function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is a number", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -800,92 +800,92 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: 123,
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: 123,
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
+        keyChain: "b.c",
         nodeInfo: {
           index: 0,
           count: 1,
           depth: 2,
           parent: { c: 2 },
           sort: 123,
-          name: 'c',
+          name: "c",
         },
       },
     ]);
     done();
   });
 
-  it('Should not sort keys when `.sort` of 3rd arg is a string', function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is a string", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
-    var opts = { sort: 'ABC' };
+    var opts = { sort: "ABC" };
     eachProps(obj, logger.bind(logs), opts);
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          sort: 'ABC',
-          name: 'a',
+          sort: "ABC",
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
-          sort: 'ABC',
-          name: 'b',
+          sort: "ABC",
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
+        keyChain: "b.c",
         nodeInfo: {
           index: 0,
           count: 1,
           depth: 2,
           parent: { c: 2 },
-          sort: 'ABC',
-          name: 'c',
+          sort: "ABC",
+          name: "c",
         },
       },
     ]);
     done();
   });
 
-  it('Should not sort keys when `.sort` of 3rd arg is an array', function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is an array", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -894,45 +894,45 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: [1, 2, 3],
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: [1, 2, 3],
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
+        keyChain: "b.c",
         nodeInfo: {
           index: 0,
           count: 1,
           depth: 2,
           parent: { c: 2 },
           sort: [1, 2, 3],
-          name: 'c',
+          name: "c",
         },
       },
     ]);
     done();
   });
 
-  it('Should not sort keys when `.sort` of 3rd arg is a object', function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is a object", function (done) {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
@@ -941,38 +941,38 @@ describe('Argument test', function () {
     expect(logs).toEqual([
       {
         value: 1,
-        keyChain: 'a',
+        keyChain: "a",
         nodeInfo: {
           index: 0,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: { x: 1 },
-          name: 'a',
+          name: "a",
         },
       },
       {
         value: { c: 2 },
-        keyChain: 'b',
+        keyChain: "b",
         nodeInfo: {
           index: 1,
           count: 2,
           depth: 1,
           parent: { a: 1, b: { c: 2 } },
           sort: { x: 1 },
-          name: 'b',
+          name: "b",
         },
       },
       {
         value: 2,
-        keyChain: 'b.c',
+        keyChain: "b.c",
         nodeInfo: {
           index: 0,
           count: 1,
           depth: 2,
           parent: { c: 2 },
           sort: { x: 1 },
-          name: 'c',
+          name: "c",
         },
       },
     ]);
@@ -980,8 +980,8 @@ describe('Argument test', function () {
   });
 
   it(
-    'Should not sort keys when `.sort` of 3rd arg is a function which' +
-      '\n\treturns nothing',
+    "Should not sort keys when `.sort` of 3rd arg is a function which" +
+      "\n\treturns nothing",
     function (done) {
       var logs = [];
 
@@ -991,48 +991,48 @@ describe('Argument test', function () {
       expect(logs).toEqual([
         {
           value: 1,
-          keyChain: 'a',
+          keyChain: "a",
           nodeInfo: {
             index: 0,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnNoReturn,
-            name: 'a',
+            name: "a",
           },
         },
         {
           value: { c: 2 },
-          keyChain: 'b',
+          keyChain: "b",
           nodeInfo: {
             index: 1,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnNoReturn,
-            name: 'b',
+            name: "b",
           },
         },
         {
           value: 2,
-          keyChain: 'b.c',
+          keyChain: "b.c",
           nodeInfo: {
             index: 0,
             count: 1,
             depth: 2,
             parent: { c: 2 },
             sort: fnNoReturn,
-            name: 'c',
+            name: "c",
           },
         },
       ]);
       done();
-    }
+    },
   );
 
   it(
-    'Should not sort keys when `.sort` of 3rd arg is a function which' +
-      '\n\treturns null',
+    "Should not sort keys when `.sort` of 3rd arg is a function which" +
+      "\n\treturns null",
     function (done) {
       var logs = [];
 
@@ -1042,48 +1042,48 @@ describe('Argument test', function () {
       expect(logs).toEqual([
         {
           value: 1,
-          keyChain: 'a',
+          keyChain: "a",
           nodeInfo: {
             index: 0,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnNull,
-            name: 'a',
+            name: "a",
           },
         },
         {
           value: { c: 2 },
-          keyChain: 'b',
+          keyChain: "b",
           nodeInfo: {
             index: 1,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnNull,
-            name: 'b',
+            name: "b",
           },
         },
         {
           value: 2,
-          keyChain: 'b.c',
+          keyChain: "b.c",
           nodeInfo: {
             index: 0,
             count: 1,
             depth: 2,
             parent: { c: 2 },
             sort: fnReturnNull,
-            name: 'c',
+            name: "c",
           },
         },
       ]);
       done();
-    }
+    },
   );
 
   it(
-    'Should not sort keys when `.sort` of 3rd arg is a function which' +
-      '\n\treturns a boolean',
+    "Should not sort keys when `.sort` of 3rd arg is a function which" +
+      "\n\treturns a boolean",
     function (done) {
       var logs = [];
 
@@ -1093,48 +1093,48 @@ describe('Argument test', function () {
       expect(logs).toEqual([
         {
           value: 1,
-          keyChain: 'a',
+          keyChain: "a",
           nodeInfo: {
             index: 0,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnBool,
-            name: 'a',
+            name: "a",
           },
         },
         {
           value: { c: 2 },
-          keyChain: 'b',
+          keyChain: "b",
           nodeInfo: {
             index: 1,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnBool,
-            name: 'b',
+            name: "b",
           },
         },
         {
           value: 2,
-          keyChain: 'b.c',
+          keyChain: "b.c",
           nodeInfo: {
             index: 0,
             count: 1,
             depth: 2,
             parent: { c: 2 },
             sort: fnReturnBool,
-            name: 'c',
+            name: "c",
           },
         },
       ]);
       done();
-    }
+    },
   );
 
   it(
-    'Should not sort keys when `.sort` of 3rd arg is a function which' +
-      '\n\treturns a number',
+    "Should not sort keys when `.sort` of 3rd arg is a function which" +
+      "\n\treturns a number",
     function (done) {
       var logs = [];
 
@@ -1144,48 +1144,48 @@ describe('Argument test', function () {
       expect(logs).toEqual([
         {
           value: 1,
-          keyChain: 'a',
+          keyChain: "a",
           nodeInfo: {
             index: 0,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnNum,
-            name: 'a',
+            name: "a",
           },
         },
         {
           value: { c: 2 },
-          keyChain: 'b',
+          keyChain: "b",
           nodeInfo: {
             index: 1,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnNum,
-            name: 'b',
+            name: "b",
           },
         },
         {
           value: 2,
-          keyChain: 'b.c',
+          keyChain: "b.c",
           nodeInfo: {
             index: 0,
             count: 1,
             depth: 2,
             parent: { c: 2 },
             sort: fnReturnNum,
-            name: 'c',
+            name: "c",
           },
         },
       ]);
       done();
-    }
+    },
   );
 
   it(
-    'Should not sort keys when `.sort` of 3rd arg is a function which' +
-      '\n\treturns a string',
+    "Should not sort keys when `.sort` of 3rd arg is a function which" +
+      "\n\treturns a string",
     function (done) {
       var logs = [];
 
@@ -1195,48 +1195,48 @@ describe('Argument test', function () {
       expect(logs).toEqual([
         {
           value: 1,
-          keyChain: 'a',
+          keyChain: "a",
           nodeInfo: {
             index: 0,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnStr,
-            name: 'a',
+            name: "a",
           },
         },
         {
           value: { c: 2 },
-          keyChain: 'b',
+          keyChain: "b",
           nodeInfo: {
             index: 1,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnStr,
-            name: 'b',
+            name: "b",
           },
         },
         {
           value: 2,
-          keyChain: 'b.c',
+          keyChain: "b.c",
           nodeInfo: {
             index: 0,
             count: 1,
             depth: 2,
             parent: { c: 2 },
             sort: fnReturnStr,
-            name: 'c',
+            name: "c",
           },
         },
       ]);
       done();
-    }
+    },
   );
 
   it(
-    'Should not sort keys when `.sort` of 3rd arg is a function which' +
-      '\n\treturns a function',
+    "Should not sort keys when `.sort` of 3rd arg is a function which" +
+      "\n\treturns a function",
     function (done) {
       var logs = [];
 
@@ -1246,48 +1246,48 @@ describe('Argument test', function () {
       expect(logs).toEqual([
         {
           value: 1,
-          keyChain: 'a',
+          keyChain: "a",
           nodeInfo: {
             index: 0,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnFunc,
-            name: 'a',
+            name: "a",
           },
         },
         {
           value: { c: 2 },
-          keyChain: 'b',
+          keyChain: "b",
           nodeInfo: {
             index: 1,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnFunc,
-            name: 'b',
+            name: "b",
           },
         },
         {
           value: 2,
-          keyChain: 'b.c',
+          keyChain: "b.c",
           nodeInfo: {
             index: 0,
             count: 1,
             depth: 2,
             parent: { c: 2 },
             sort: fnReturnFunc,
-            name: 'c',
+            name: "c",
           },
         },
       ]);
       done();
-    }
+    },
   );
 
   it(
-    'Should not sort keys when `.sort` of 3rd arg is a function which' +
-      '\n\treturns an object',
+    "Should not sort keys when `.sort` of 3rd arg is a function which" +
+      "\n\treturns an object",
     function (done) {
       var logs = [];
 
@@ -1297,42 +1297,42 @@ describe('Argument test', function () {
       expect(logs).toEqual([
         {
           value: 1,
-          keyChain: 'a',
+          keyChain: "a",
           nodeInfo: {
             index: 0,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnObj,
-            name: 'a',
+            name: "a",
           },
         },
         {
           value: { c: 2 },
-          keyChain: 'b',
+          keyChain: "b",
           nodeInfo: {
             index: 1,
             count: 2,
             depth: 1,
             parent: { a: 1, b: { c: 2 } },
             sort: fnReturnObj,
-            name: 'b',
+            name: "b",
           },
         },
         {
           value: 2,
-          keyChain: 'b.c',
+          keyChain: "b.c",
           nodeInfo: {
             index: 0,
             count: 1,
             depth: 2,
             parent: { c: 2 },
             sort: fnReturnObj,
-            name: 'c',
+            name: "c",
           },
         },
       ]);
       done();
-    }
+    },
   );
 });
