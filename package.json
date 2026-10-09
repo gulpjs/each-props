@@ -3,6 +3,12 @@
   "version": "3.0.0",
   "description": "Processes each properties of an object deeply.",
   "author": "Gulp Team <team@gulpjs.com> (https://gulpjs.com/)",
+  "funding": "https://github.com/sponsors/gulpjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gulpjs/each-props.git"
+  },
+  "license": "MIT",
   "engines": {
     "node": ">= 22.15.0"
   },
@@ -18,10 +24,17 @@
     "pretest": "npm run lint",
     "test": "nyc mocha --async-only"
   },
-  "funding": "https://github.com/sponsors/gulpjs",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gulpjs/each-props.git"
+  "devDependencies": {
+    "eslint": "10.11.0",
+    "eslint-config-gulp": "7.0.0",
+    "expect": "^27.5.1",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0",
+    "prettier": "3.9.6"
+  },
+  "dependencies": {
+    "is-plain-object": "^5.0.0",
+    "object.defaults": "^1.1.0"
   },
   "nyc": {
     "reporter": [
@@ -36,18 +49,5 @@
     "property",
     "properties",
     "props"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "eslint": "10.11.0",
-    "eslint-config-gulp": "7.0.0",
-    "expect": "^27.5.1",
-    "mocha": "^8.4.0",
-    "nyc": "^15.1.0",
-    "prettier": "3.9.6"
-  },
-  "dependencies": {
-    "is-plain-object": "^5.0.0",
-    "object.defaults": "^1.1.0"
-  }
+  ]
 }
