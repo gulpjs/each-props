@@ -24,6 +24,10 @@
     "pretest": "npm run lint",
     "test": "nyc mocha --async-only"
   },
+  "dependencies": {
+    "is-plain-object": "^5.0.0",
+    "object.defaults": "^1.1.0"
+  },
   "devDependencies": {
     "eslint": "10.11.0",
     "eslint-config-gulp": "7.0.0",
@@ -31,10 +35,6 @@
     "mocha": "^8.4.0",
     "nyc": "^15.1.0",
     "prettier": "3.9.6"
-  },
-  "dependencies": {
-    "is-plain-object": "^5.0.0",
-    "object.defaults": "^1.1.0"
   },
   "nyc": {
     "reporter": [
