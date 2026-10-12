@@ -123,3 +123,7 @@ MIT
 [coveralls-url]: https://coveralls.io/r/gulpjs/each-props
 [coveralls-image]: https://img.shields.io/coveralls/gulpjs/each-props/main.svg?style=flat-square
 <!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+[nodeinfo]: #properties-of-nodeinfo
+<!-- prettier-ignore-end -->
