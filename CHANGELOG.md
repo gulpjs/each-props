@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/gulpjs/each-props/compare/v3.0.0...v4.0.0) (2026-10-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* Normalize repository, dropping Node <22.15.0 ([#13](https://github.com/gulpjs/each-props/issues/13))
+
+### Miscellaneous Chores
+
+* Normalize repository, dropping Node &lt;22.15.0 ([#13](https://github.com/gulpjs/each-props/issues/13)) ([0df69b3](https://github.com/gulpjs/each-props/commit/0df69b309bc190d2b55f22fc68c330ec47d7385f))
+
 ## [3.0.0](https://www.github.com/gulpjs/each-props/compare/v2.0.0...v3.0.0) (2022-10-02)
 
 
