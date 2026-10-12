@@ -1,14 +1,14 @@
-'use strict';
+"use strict";
 
-var isPlainObject = require('is-plain-object').isPlainObject;
-var defaults = require('object.defaults/immutable');
+var isPlainObject = require("is-plain-object").isPlainObject;
+var defaults = require("object.defaults/immutable");
 
 module.exports = function (obj, fn, opts) {
   if (!isObject(obj)) {
     return;
   }
 
-  if (typeof fn !== 'function') {
+  if (typeof fn !== "function") {
     return;
   }
 
@@ -16,12 +16,12 @@ module.exports = function (obj, fn, opts) {
     opts = {};
   }
 
-  forEachChild(obj, '', fn, 0, opts);
+  forEachChild(obj, "", fn, 0, opts);
 };
 
 function forEachChild(node, baseKey, fn, depth, opts) {
   var keys = Object.keys(node);
-  if (typeof opts.sort === 'function') {
+  if (typeof opts.sort === "function") {
     var sortedKeys = opts.sort(keys);
     if (Array.isArray(sortedKeys)) {
       keys = sortedKeys;
@@ -32,7 +32,7 @@ function forEachChild(node, baseKey, fn, depth, opts) {
 
   for (var i = 0, n = keys.length; i < n; i++) {
     var key = keys[i];
-    var keyChain = baseKey + '.' + key;
+    var keyChain = baseKey + "." + key;
     var value = node[key];
 
     var nodeInfo = defaults(opts);
@@ -52,5 +52,5 @@ function forEachChild(node, baseKey, fn, depth, opts) {
 }
 
 function isObject(v) {
-  return Object.prototype.toString.call(v) === '[object Object]';
+  return Object.prototype.toString.call(v) === "[object Object]";
 }

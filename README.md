@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://gulpjs.com">
+  <a href="https://gulpjs.com">
     <img height="257" width="114" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
   </a>
 </p>
@@ -23,19 +23,19 @@ $ npm i each-props --save
 Apply a function to all (non plain object) properties.
 
 ```js
-const eachProps = require('each-props');
+const eachProps = require("each-props");
 
-var obj = { a: 1, b: { c: 'CCC', d: { e: 'EEE' } } };
+var obj = { a: 1, b: { c: "CCC", d: { e: "EEE" } } };
 
 eachProps(obj, function (value, keyChain, nodeInfo) {
-  if (keyChain === 'a') {
-    nodeInfo.parent['a'] = value * 2;
-  } else if (keyChain === 'b.c') {
-    nodeInfo.parent['c'] = value.toLowerCase();
-  } else if (keyChain === 'b.d') {
+  if (keyChain === "a") {
+    nodeInfo.parent["a"] = value * 2;
+  } else if (keyChain === "b.c") {
+    nodeInfo.parent["c"] = value.toLowerCase();
+  } else if (keyChain === "b.d") {
     return true; // stop to dig
-  } else if (keyChain === 'b.d.e') {
-    nodeInfo.parent['e'] = value.toLowerCase();
+  } else if (keyChain === "b.d.e") {
+    nodeInfo.parent["e"] = value.toLowerCase();
   }
 });
 
@@ -98,6 +98,16 @@ Executes the _fn_ function for all properties.
 
   ... and any properties you want to pass to each node.
 
+## Strict No LLM / No AI Policy
+
+No LLMs for issues.
+
+No LLMs for patches / pull requests.
+
+No LLMs for comments on the bug tracker, including translation.
+
+English is encouraged, but not required. You are welcome to post in your native language and rely on others to have their own translation tools of choice to interpret your words.
+
 ## License
 
 MIT
@@ -107,11 +117,11 @@ MIT
 [npm-url]: https://www.npmjs.org/package/each-props
 [npm-image]: https://img.shields.io/npm/v/each-props.svg?style=flat-square
 
-[ci-url]: https://github.com/gulpjs/each-props/actions?query=workflow:dev
-[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/each-props/dev.yml?branch=master&style=flat-square
+[ci-url]: https://github.com/gulpjs/each-props/actions/workflows/dev.yml
+[ci-image]: https://img.shields.io/github/actions/workflow/status/gulpjs/each-props/dev.yml?style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/each-props
-[coveralls-image]: https://img.shields.io/coveralls/gulpjs/each-props/master.svg
+[coveralls-image]: https://img.shields.io/coveralls/gulpjs/each-props/main.svg?style=flat-square
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
