@@ -1,7 +1,8 @@
 "use strict";
 
 var eachProps = require("..");
-var expect = require("expect");
+var assert = require("node:assert");
+var { describe, it } = require("node:test");
 
 function logger(value, keyChain, nodeInfo) {
   this.push({
@@ -38,15 +39,15 @@ var fnSort = function (arr) {
 };
 
 describe("Argument test", function () {
-  it("Should process normally when args are normal", function (done) {
+  it("Should process normally when args are normal", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = { xxx: true };
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).toEqual({ a: 1, b: { c: 2 } });
-    expect(logs).toEqual([
+    assert.deepStrictEqual(obj, { a: 1, b: { c: 2 } });
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -84,18 +85,17 @@ describe("Argument test", function () {
         },
       },
     ]);
-    done();
   });
 
-  it("Should process normally when args are normal (opts.sort is specified", function (done) {
+  it("Should process normally when args are normal (opts.sort is specified", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: fnSort };
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).toEqual({ a: 1, b: { c: 2 } });
-    expect(logs).toEqual([
+    assert.deepStrictEqual(obj, { a: 1, b: { c: 2 } });
+    assert.deepStrictEqual(logs, [
       {
         value: { c: 2 },
         keyChain: "b",
@@ -133,187 +133,169 @@ describe("Argument test", function () {
         },
       },
     ]);
-    done();
   });
 
-  it("Should process nothing when 1st arg is undefined", function (done) {
+  it("Should process nothing when 1st arg is undefined", function () {
     var logs = [];
 
     var obj = undefined;
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).toBeUndefined();
-    expect(logs).toEqual([]);
-    done();
+    assert.strictEqual(obj, undefined);
+    assert.deepStrictEqual(logs, []);
   });
 
-  it("Should process nothing when 1st arg is null", function (done) {
+  it("Should process nothing when 1st arg is null", function () {
     var logs = [];
 
     var obj = null;
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).toBeNull();
-    expect(logs).toEqual([]);
-    done();
+    assert.strictEqual(obj, null);
+    assert.deepStrictEqual(logs, []);
   });
 
-  it("Should process nothing when 1st arg is not a boolean", function (done) {
+  it("Should process nothing when 1st arg is not a boolean", function () {
     var logs = [];
 
     var obj = true;
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).toEqual(true);
-    expect(logs).toEqual([]);
-    done();
+    assert.deepStrictEqual(obj, true);
+    assert.deepStrictEqual(logs, []);
   });
 
-  it("Should process nothing when 1st arg is a number", function (done) {
+  it("Should process nothing when 1st arg is a number", function () {
     var logs = [];
 
     var obj = 9;
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).toEqual(9);
-    expect(logs).toEqual([]);
-    done();
+    assert.deepStrictEqual(obj, 9);
+    assert.deepStrictEqual(logs, []);
   });
 
-  it("Should process nothing when 1st arg is a string", function (done) {
+  it("Should process nothing when 1st arg is a string", function () {
     var logs = [];
 
     var obj = "ABC";
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).toEqual("ABC");
-    expect(logs).toEqual([]);
-    done();
+    assert.deepStrictEqual(obj, "ABC");
+    assert.deepStrictEqual(logs, []);
   });
 
-  it("Should process nothing when 1st arg is an array", function (done) {
+  it("Should process nothing when 1st arg is an array", function () {
     var logs = [];
 
     var obj = [{ a: 1 }, { b: 2 }, { c: 3 }];
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).toEqual([{ a: 1 }, { b: 2 }, { c: 3 }]);
-    expect(logs).toEqual([]);
-    done();
+    assert.deepStrictEqual(obj, [{ a: 1 }, { b: 2 }, { c: 3 }]);
+    assert.deepStrictEqual(logs, []);
   });
 
-  it("Should process nothing when 1st arg is a function", function (done) {
+  it("Should process nothing when 1st arg is a function", function () {
     var logs = [];
 
     var obj = fnNoReturn;
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).toEqual([]);
-    done();
+    assert.deepStrictEqual(logs, []);
   });
 
-  it("Should process nothing when 1st arg is a typed object", function (done) {
+  it("Should process nothing when 1st arg is a typed object", function () {
     var logs = [];
 
     var obj = new Date(0);
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).toEqual([]);
-    done();
+    assert.deepStrictEqual(logs, []);
   });
 
-  it("Should process nothing when 1st arg is an empty plain object", function (done) {
+  it("Should process nothing when 1st arg is an empty plain object", function () {
     var logs = [];
 
     var obj = {};
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(obj).toEqual({});
-    expect(logs).toEqual([]);
-    done();
+    assert.deepStrictEqual(obj, {});
+    assert.deepStrictEqual(logs, []);
   });
 
-  it("Should process nothing when 2nd arg is undefined", function (done) {
+  it("Should process nothing when 2nd arg is undefined", function () {
     var obj = { a: 1 };
     var fn = undefined;
     eachProps(obj, fn);
-    expect(obj).toEqual({ a: 1 });
-    done();
+    assert.deepStrictEqual(obj, { a: 1 });
   });
 
-  it("Should process nothing when 2nd arg is null", function (done) {
+  it("Should process nothing when 2nd arg is null", function () {
     var obj = { a: 1 };
     var fn = null;
     eachProps(obj, fn);
-    expect(obj).toEqual({ a: 1 });
-    done();
+    assert.deepStrictEqual(obj, { a: 1 });
   });
 
-  it("Should process nothing when 2nd arg is a boolean", function (done) {
+  it("Should process nothing when 2nd arg is a boolean", function () {
     var obj = { a: 1 };
     var fn = true;
     eachProps(obj, fn);
-    expect(obj).toEqual({ a: 1 });
-    done();
+    assert.deepStrictEqual(obj, { a: 1 });
   });
 
-  it("Should process nothing when 2nd arg is a number", function (done) {
+  it("Should process nothing when 2nd arg is a number", function () {
     var obj = { a: 1 };
     var fn = 123;
     eachProps(obj, fn);
-    expect(obj).toEqual({ a: 1 });
-    done();
+    assert.deepStrictEqual(obj, { a: 1 });
   });
 
-  it("Should process nothing when 2nd arg is a string", function (done) {
+  it("Should process nothing when 2nd arg is a string", function () {
     var obj = { a: 1 };
     var fn = "ABC";
     eachProps(obj, fn);
-    expect(obj).toEqual({ a: 1 });
-    done();
+    assert.deepStrictEqual(obj, { a: 1 });
   });
 
-  it("Should process nothing when 2nd arg is an array", function (done) {
+  it("Should process nothing when 2nd arg is an array", function () {
     var obj = { a: 1 };
     var fn = ["A", "B", "C"];
     eachProps(obj, fn);
-    expect(obj).toEqual({ a: 1 });
-    done();
+    assert.deepStrictEqual(obj, { a: 1 });
   });
 
-  it("Should process nothing when 2nd arg is an plain object", function (done) {
+  it("Should process nothing when 2nd arg is an plain object", function () {
     var obj = { a: 1 };
     var fn = { a: "A", b: "B", c: "C" };
     eachProps(obj, fn);
-    expect(obj).toEqual({ a: 1 });
-    done();
+    assert.deepStrictEqual(obj, { a: 1 });
   });
 
-  it("Should process nothing when 2nd arg is an typed object", function (done) {
+  it("Should process nothing when 2nd arg is an typed object", function () {
     var obj = { a: 1 };
     var fn = new Date(0);
     eachProps(obj, fn);
-    expect(obj).toEqual({ a: 1 });
-    done();
+    assert.deepStrictEqual(obj, { a: 1 });
   });
 
-  it("Should process nothing when 3rd arg is undefined", function (done) {
+  it("Should process nothing when 3rd arg is undefined", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = undefined;
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -342,17 +324,16 @@ describe("Argument test", function () {
         nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
-    done();
   });
 
-  it("Should process nothing when 3rd arg is null", function (done) {
+  it("Should process nothing when 3rd arg is null", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = null;
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -381,16 +362,15 @@ describe("Argument test", function () {
         nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
-    done();
   });
 
-  it("Should process nothing when 3rd arg is a boolean", function (done) {
+  it("Should process nothing when 3rd arg is a boolean", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = true;
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -419,16 +399,15 @@ describe("Argument test", function () {
         nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
-    done();
   });
 
-  it("Should process nothing when 3rd arg is a number", function (done) {
+  it("Should process nothing when 3rd arg is a number", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = 123;
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -457,16 +436,15 @@ describe("Argument test", function () {
         nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
-    done();
   });
 
-  it("Should process nothing when 3rd arg is a string", function (done) {
+  it("Should process nothing when 3rd arg is a string", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = "ABC";
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -495,16 +473,15 @@ describe("Argument test", function () {
         nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
-    done();
   });
 
-  it("Should process nothing when 3rd arg is an array", function (done) {
+  it("Should process nothing when 3rd arg is an array", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = [1, 2, 3];
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -533,16 +510,15 @@ describe("Argument test", function () {
         nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
-    done();
   });
 
-  it("Should process nothing when 3rd arg is a function", function (done) {
+  it("Should process nothing when 3rd arg is a function", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = fnNoReturn;
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -571,16 +547,15 @@ describe("Argument test", function () {
         nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
-    done();
   });
 
-  it("Should process nothing when 3rd arg is a typed object", function (done) {
+  it("Should process nothing when 3rd arg is a typed object", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = new Date(0);
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -609,16 +584,15 @@ describe("Argument test", function () {
         nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
-    done();
   });
 
-  it("Should process nothing when 3rd arg is an empty plain object", function (done) {
+  it("Should process nothing when 3rd arg is an empty plain object", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = {};
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -647,16 +621,15 @@ describe("Argument test", function () {
         nodeInfo: { index: 0, count: 1, depth: 2, parent: { c: 2 }, name: "c" },
       },
     ]);
-    done();
   });
 
-  it("Should not sort keys when `.sort` of 3rd arg is undefined", function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is undefined", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: undefined };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -694,16 +667,15 @@ describe("Argument test", function () {
         },
       },
     ]);
-    done();
   });
 
-  it("Should not sort keys when `.sort` of 3rd arg is null", function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is null", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: null };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -741,16 +713,15 @@ describe("Argument test", function () {
         },
       },
     ]);
-    done();
   });
 
-  it("Should not sort keys when `.sort` of 3rd arg is a boolean", function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is a boolean", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: true };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -788,16 +759,15 @@ describe("Argument test", function () {
         },
       },
     ]);
-    done();
   });
 
-  it("Should not sort keys when `.sort` of 3rd arg is a number", function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is a number", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: 123 };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -835,16 +805,15 @@ describe("Argument test", function () {
         },
       },
     ]);
-    done();
   });
 
-  it("Should not sort keys when `.sort` of 3rd arg is a string", function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is a string", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: "ABC" };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -882,16 +851,15 @@ describe("Argument test", function () {
         },
       },
     ]);
-    done();
   });
 
-  it("Should not sort keys when `.sort` of 3rd arg is an array", function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is an array", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: [1, 2, 3] };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -929,16 +897,15 @@ describe("Argument test", function () {
         },
       },
     ]);
-    done();
   });
 
-  it("Should not sort keys when `.sort` of 3rd arg is a object", function (done) {
+  it("Should not sort keys when `.sort` of 3rd arg is a object", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: 2 } };
     var opts = { sort: { x: 1 } };
     eachProps(obj, logger.bind(logs), opts);
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         value: 1,
         keyChain: "a",
@@ -976,19 +943,18 @@ describe("Argument test", function () {
         },
       },
     ]);
-    done();
   });
 
   it(
     "Should not sort keys when `.sort` of 3rd arg is a function which" +
       "\n\treturns nothing",
-    function (done) {
+    function () {
       var logs = [];
 
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnNoReturn };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).toEqual([
+      assert.deepStrictEqual(logs, [
         {
           value: 1,
           keyChain: "a",
@@ -1026,20 +992,19 @@ describe("Argument test", function () {
           },
         },
       ]);
-      done();
     },
   );
 
   it(
     "Should not sort keys when `.sort` of 3rd arg is a function which" +
       "\n\treturns null",
-    function (done) {
+    function () {
       var logs = [];
 
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnNull };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).toEqual([
+      assert.deepStrictEqual(logs, [
         {
           value: 1,
           keyChain: "a",
@@ -1077,20 +1042,19 @@ describe("Argument test", function () {
           },
         },
       ]);
-      done();
     },
   );
 
   it(
     "Should not sort keys when `.sort` of 3rd arg is a function which" +
       "\n\treturns a boolean",
-    function (done) {
+    function () {
       var logs = [];
 
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnBool };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).toEqual([
+      assert.deepStrictEqual(logs, [
         {
           value: 1,
           keyChain: "a",
@@ -1128,20 +1092,19 @@ describe("Argument test", function () {
           },
         },
       ]);
-      done();
     },
   );
 
   it(
     "Should not sort keys when `.sort` of 3rd arg is a function which" +
       "\n\treturns a number",
-    function (done) {
+    function () {
       var logs = [];
 
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnNum };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).toEqual([
+      assert.deepStrictEqual(logs, [
         {
           value: 1,
           keyChain: "a",
@@ -1179,20 +1142,19 @@ describe("Argument test", function () {
           },
         },
       ]);
-      done();
     },
   );
 
   it(
     "Should not sort keys when `.sort` of 3rd arg is a function which" +
       "\n\treturns a string",
-    function (done) {
+    function () {
       var logs = [];
 
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnStr };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).toEqual([
+      assert.deepStrictEqual(logs, [
         {
           value: 1,
           keyChain: "a",
@@ -1230,20 +1192,19 @@ describe("Argument test", function () {
           },
         },
       ]);
-      done();
     },
   );
 
   it(
     "Should not sort keys when `.sort` of 3rd arg is a function which" +
       "\n\treturns a function",
-    function (done) {
+    function () {
       var logs = [];
 
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnFunc };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).toEqual([
+      assert.deepStrictEqual(logs, [
         {
           value: 1,
           keyChain: "a",
@@ -1281,20 +1242,19 @@ describe("Argument test", function () {
           },
         },
       ]);
-      done();
     },
   );
 
   it(
     "Should not sort keys when `.sort` of 3rd arg is a function which" +
       "\n\treturns an object",
-    function (done) {
+    function () {
       var logs = [];
 
       var obj = { a: 1, b: { c: 2 } };
       var opts = { sort: fnReturnObj };
       eachProps(obj, logger.bind(logs), opts);
-      expect(logs).toEqual([
+      assert.deepStrictEqual(logs, [
         {
           value: 1,
           keyChain: "a",
@@ -1332,7 +1292,6 @@ describe("Argument test", function () {
           },
         },
       ]);
-      done();
     },
   );
 });
