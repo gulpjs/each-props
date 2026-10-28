@@ -1,7 +1,9 @@
 "use strict";
 
+var assert = require("node:assert");
+var { describe, it } = require("node:test");
+
 var eachProps = require("..");
-var expect = require("expect");
 
 function logger(value, keyChain, nodeInfo) {
   var log = {};
@@ -20,27 +22,26 @@ function logger(value, keyChain, nodeInfo) {
 }
 
 describe("Processing test", function () {
-  it("Should succeed when an input object is single depth", function (done) {
+  it("Should succeed when an input object is single depth", function () {
     var logs = [];
 
     var obj = { a: 1, b: 2, c: 3 };
     eachProps(obj, logger.bind(logs));
 
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       { keyChain: "a", index: 0, count: 3, depth: 1, name: "a" },
       { keyChain: "b", index: 1, count: 3, depth: 1, name: "b" },
       { keyChain: "c", index: 2, count: 3, depth: 1, name: "c" },
     ]);
-    done();
   });
 
-  it("Should succeed when an input object is multiple depth", function (done) {
+  it("Should succeed when an input object is multiple depth", function () {
     var logs = [];
 
     var obj = { a: 1, b: { c: "C", d: "D", e: { f: "F", g: "G" } } };
     eachProps(obj, logger.bind(logs));
 
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       { keyChain: "a", index: 0, count: 2, depth: 1, name: "a" },
       { keyChain: "b", index: 1, count: 2, depth: 1, name: "b" },
       { keyChain: "b.c", index: 0, count: 3, depth: 2, name: "c" },
@@ -49,10 +50,9 @@ describe("Processing test", function () {
       { keyChain: "b.e.f", index: 0, count: 2, depth: 3, name: "f" },
       { keyChain: "b.e.g", index: 1, count: 2, depth: 3, name: "g" },
     ]);
-    done();
   });
 
-  it("Should sort properties when a sort function is specified", function (done) {
+  it("Should sort properties when a sort function is specified", function () {
     var logs = [];
 
     var obj = { q: 1, w: 2, e: 3, r: 4, t: 5, y: 6 };
@@ -63,7 +63,7 @@ describe("Processing test", function () {
     };
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       { keyChain: "e", name: "e", index: 0, count: 6, depth: 1 },
       { keyChain: "q", name: "q", index: 1, count: 6, depth: 1 },
       { keyChain: "r", name: "r", index: 2, count: 6, depth: 1 },
@@ -71,13 +71,12 @@ describe("Processing test", function () {
       { keyChain: "w", name: "w", index: 4, count: 6, depth: 1 },
       { keyChain: "y", name: "y", index: 5, count: 6, depth: 1 },
     ]);
-    done();
   });
 
   it(
     "Should sort properties when an input object is multiple depth and" +
       "\n\ta sort function is specified",
-    function (done) {
+    function () {
       var logs = [];
 
       var obj = { z: 1, x: { c: "C", v: "D", b: { n: "F", m: "G" } } };
@@ -88,7 +87,7 @@ describe("Processing test", function () {
       };
       eachProps(obj, logger.bind(logs), opts);
 
-      expect(logs).toEqual([
+      assert.deepStrictEqual(logs, [
         { name: "x", keyChain: "x", index: 0, count: 2, depth: 1 },
         { name: "b", keyChain: "x.b", index: 0, count: 3, depth: 2 },
         { name: "m", keyChain: "x.b.m", index: 0, count: 2, depth: 3 },
@@ -97,11 +96,10 @@ describe("Processing test", function () {
         { name: "v", keyChain: "x.v", index: 2, count: 3, depth: 2 },
         { name: "z", keyChain: "z", index: 1, count: 2, depth: 1 },
       ]);
-      done();
     },
   );
 
-  it("Should Stop digging when the return value is true", function (done) {
+  it("Should Stop digging when the return value is true", function () {
     var logs = [];
 
     var obj = { z: 1, x: { c: "C", v: "D", b: { n: "F", m: "G" }, a: "H" } };
@@ -115,7 +113,7 @@ describe("Processing test", function () {
     };
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       { name: "x", keyChain: "x", index: 0, count: 2, depth: 1 },
       { name: "a", keyChain: "x.a", index: 0, count: 4, depth: 2 },
       { name: "b", keyChain: "x.b", index: 1, count: 4, depth: 2 },
@@ -123,10 +121,9 @@ describe("Processing test", function () {
       { name: "v", keyChain: "x.v", index: 3, count: 4, depth: 2 },
       { name: "z", keyChain: "z", index: 1, count: 2, depth: 1 },
     ]);
-    done();
   });
 
-  it("Should pass properties in opts to all nodes", function (done) {
+  it("Should pass properties in opts to all nodes", function () {
     var logs = [];
 
     var obj = { z: 1, x: { c: "C", v: "D", b: { n: "F", m: "G" } } };
@@ -139,7 +136,7 @@ describe("Processing test", function () {
     };
     eachProps(obj, logger.bind(logs), opts);
 
-    expect(logs).toEqual([
+    assert.deepStrictEqual(logs, [
       {
         name: "x",
         keyChain: "x",
@@ -204,6 +201,5 @@ describe("Processing test", function () {
         n: 9,
       },
     ]);
-    done();
   });
 });
