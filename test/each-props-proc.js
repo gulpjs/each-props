@@ -1,8 +1,9 @@
 "use strict";
 
-var eachProps = require("..");
 var assert = require("node:assert");
 var { describe, it } = require("node:test");
+
+var eachProps = require("..");
 
 function logger(value, keyChain, nodeInfo) {
   var log = {};
